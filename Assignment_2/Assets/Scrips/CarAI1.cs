@@ -45,7 +45,7 @@ namespace UnityStandardAssets.Vehicles.Car
                 }
             }
 
-            float[,] terrainNodes=new float[newTerrain.GetLength(0),newTerrain.GetLength(1)];
+            Node[,] terrainNodes=new Node[newTerrain.GetLength(0),newTerrain.GetLength(1)];
             stepx = (terrainInfo.x_high - terrainInfo.x_low) / newTerrain.GetLength(0);
             stepz = (terrainInfo.z_high - terrainInfo.z_low) / newTerrain.GetLength(1);
             for(int i=0; i<newTerrain.GetLength(0);i++){
