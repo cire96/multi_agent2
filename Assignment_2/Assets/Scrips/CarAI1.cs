@@ -44,6 +44,8 @@ namespace UnityStandardAssets.Vehicles.Car
                     }
                 }
             }
+
+            float[,] terrainNodes=new float[newTerrain.GetLength(0),newTerrain.GetLength(1)];
             stepx = (terrainInfo.x_high - terrainInfo.x_low) / newTerrain.GetLength(0);
             stepz = (terrainInfo.z_high - terrainInfo.z_low) / newTerrain.GetLength(1);
             for(int i=0; i<newTerrain.GetLength(0);i++){
@@ -55,12 +57,12 @@ namespace UnityStandardAssets.Vehicles.Car
                     c.enabled = false;
                     cube.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                     cube.transform.position = new Vector3(posx,0,posz);
+                    terrainNodes[i,j] = new Node(posx,posz);
                 }
             }
             
 
 
-            Debug.Log(newTerrain.ToString());
             
 
 
