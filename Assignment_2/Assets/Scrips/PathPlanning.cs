@@ -15,6 +15,7 @@ public class PathPlanning : MonoBehaviour {
         float tileXSize = (terrainInfo.x_high - terrainInfo.x_low) / terrainInfo.x_N;
         float tileZSize = (terrainInfo.z_high - terrainInfo.z_low) / terrainInfo.z_N;
 
+        // check the resolution of the grid, and if the car's turret range is not enough to cover half it's length, make a finer grid
         float[, ] newTerrain;
         float stepx;
         float stepz;
@@ -34,6 +35,7 @@ public class PathPlanning : MonoBehaviour {
             }
         }
 
+        // initialize the 2d array with all the nodes
         Node[, ] terrainNodes = new Node[newTerrain.GetLength (0), newTerrain.GetLength (1)];
         stepx = (terrainInfo.x_high - terrainInfo.x_low) / newTerrain.GetLength (0);
         stepz = (terrainInfo.z_high - terrainInfo.z_low) / newTerrain.GetLength (1);
@@ -41,12 +43,12 @@ public class PathPlanning : MonoBehaviour {
             float posx = terrainInfo.x_low + stepx / 2 + stepx * i;
             for (int j = 0; j < newTerrain.GetLength (1); j++) {
                 if (newTerrain[i, j] == 0) {
-                    float posz = terrainInfo.z_low + stepz / 2 + stepz * j;
-                    GameObject cube = GameObject.CreatePrimitive (PrimitiveType.Cube);
-                    Collider c = cube.GetComponent<Collider> ();
-                    c.enabled = false;
-                    cube.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
-                    cube.transform.position = new Vector3 (posx, 0, posz);
+                    // float posz = terrainInfo.z_low + stepz / 2 + stepz * j;
+                    // GameObject cube = GameObject.CreatePrimitive (PrimitiveType.Cube);
+                    // Collider c = cube.GetComponent<Collider> ();
+                    // c.enabled = false;
+                    // cube.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
+                    // cube.transform.position = new Vector3 (posx, 0, posz);
                     terrainNodes[i, j] = new Node (posx, posz);
                 } else {
                     terrainNodes[i, j] = null;
