@@ -43,7 +43,7 @@ public class PathPlanning : MonoBehaviour {
             float posx = terrainInfo.x_low + stepx / 2 + stepx * i;
             for (int j = 0; j < newTerrain.GetLength (1); j++) {
                 if (newTerrain[i, j] == 0) {
-                    // float posz = terrainInfo.z_low + stepz / 2 + stepz * j;
+                    float posz = terrainInfo.z_low + stepz / 2 + stepz * j;
                     // GameObject cube = GameObject.CreatePrimitive (PrimitiveType.Cube);
                     // Collider c = cube.GetComponent<Collider> ();
                     // c.enabled = false;
