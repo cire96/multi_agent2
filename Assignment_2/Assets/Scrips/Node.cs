@@ -5,14 +5,14 @@ public class Node{
     private int id;
     private Vector3 position;
     private float x, z;
-    private int parent;
+    private Node parent;
 
     
-    public int getParent()
+    public Node getParent()
     {
         return parent;
     }
-    public void setParent(int p)
+    public void setParent(Node p)
     {
         parent = p;
     }

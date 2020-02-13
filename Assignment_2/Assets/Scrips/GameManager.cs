@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-
+    public GameObject path_planner_object;
     public GameObject terrain_manager_game_object;
     TerrainManager terrain_manager;
+    PathPlanning path_planner;
 
     public GameObject race_car;
     public GameObject turret;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour {
     void Awake () {
 
         terrain_manager = terrain_manager_game_object.GetComponent<TerrainManager>();
+        path_planner = path_planner_object.GetComponent<PathPlanning>();
        
         start_time = Time.time;
         completion_time = start_time - 1f;
