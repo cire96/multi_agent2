@@ -6,7 +6,6 @@ public class PathPlanning : MonoBehaviour {
 
     public GameObject terrain_manager_game_object;
     TerrainManager terrain_manager;
-    public GameObject[] friends;
     public Graph[] subtrees; 
 
     // Use this for initialization
@@ -62,7 +61,7 @@ public class PathPlanning : MonoBehaviour {
             }
         }
 
-        friends = GameObject.FindGameObjectsWithTag ("Player");
+        GameObject[] friends = GameObject.FindGameObjectsWithTag ("Player");
 
         subtrees = MST.getSubgraphs (terrainNodes, terrainInfo, friends, newTerrain);
 
