@@ -7,9 +7,15 @@ public class PathPlanning : MonoBehaviour {
     public GameObject terrain_manager_game_object;
     TerrainManager terrain_manager;
     public GameObject[] friends;
+    public Graph[] subtrees; 
 
     // Use this for initialization
     void Start () {
+        
+    }
+
+    // Use this for initialization
+    void Awake () {
         terrain_manager = terrain_manager_game_object.GetComponent<TerrainManager> ();
         TerrainInfo terrainInfo = terrain_manager.myInfo;
         float tileXSize = (terrainInfo.x_high - terrainInfo.x_low) / terrainInfo.x_N;
@@ -58,7 +64,7 @@ public class PathPlanning : MonoBehaviour {
 
         friends = GameObject.FindGameObjectsWithTag ("Player");
 
-        Graph[] subtrees = MST.getSubgraphs (terrainNodes, terrainInfo, friends, newTerrain);
+        subtrees = MST.getSubgraphs (terrainNodes, terrainInfo, friends, newTerrain);
 
         for (int i = 0; i < subtrees.Length; i++) {
             Color[] c = { Color.red, Color.blue, Color.yellow };
@@ -68,10 +74,6 @@ public class PathPlanning : MonoBehaviour {
                 }
             }
         }
-    }
-
-    // Use this for initialization
-    void Awake () {
 
     }
 

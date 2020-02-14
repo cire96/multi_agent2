@@ -12,16 +12,26 @@ namespace UnityStandardAssets.Vehicles.Car
         private CarController m_Car; // the car controller we want to use
 
         public GameObject terrain_manager_game_object;
+        public int ID;
         TerrainManager terrain_manager;
 
         public GameObject[] friends;
         public GameObject[] enemies;
+
+        public GameObject pathPlanner;
+        private PathPlanning planning;
+
+        Graph tree;
+        int tragetNodeId = 0;
+        int lastNodeId = -1;
+        Orientation bestOreint = Orientation.NONE;
 
         private void Start()
         {
             // get the car controller
             m_Car = GetComponent<CarController>();
             terrain_manager = terrain_manager_game_object.GetComponent<TerrainManager>();
+            planning = pathPlanner.GetComponent<PathPlanning>();
             TerrainInfo terrainInfo=terrain_manager.myInfo;
             float tileXSize = (terrainInfo.x_high - terrainInfo.x_low)/terrainInfo.x_N;
             float tileZSize = (terrainInfo.z_high - terrainInfo.z_low)/terrainInfo.z_N;
@@ -68,7 +78,14 @@ namespace UnityStandardAssets.Vehicles.Car
 
             // note that both arrays will have holes when objects are destroyed
             // but for initial planning they should work
+
+            
+            
             friends = GameObject.FindGameObjectsWithTag("Player");
+            tree = planning.subtrees[ID];
+            
+
+
             // Note that you are not allowed to check the positions of the turrets in this problem
 
            
@@ -85,6 +102,171 @@ namespace UnityStandardAssets.Vehicles.Car
         {
 
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            float xNext;
+            float zNext;
+            float zCurrent = tree.getNode(tragetNodeId).getPositionZ();
+            float xCurrent = tree.getNode(tragetNodeId).getPositionX();
+            int bestNodeId = 0;
+            bestOreint = Orientation.NONE; 
+            //Always go to the left, figure out best next node
+            if(Vector3.Distance(tree.getNode(tragetNodeId).getPosition(),transform.position)<3.0f){
+                foreach (int id in tree.getAdjList(tragetNodeId)){
+                    xNext = tree.getNode(id).getPositionX();
+                    zNext = tree.getNode(id).getPositionZ();
+                    if(lastNodeId == -1){
+                        bestOreint = Orientation.NORTH;
+                        Orientation nextOrientation = MST.getOrientation(xCurrent,zCurrent,xNext,zNext);
+                        switch(nextOrientation){
+                            case Orientation.SOUTH:
+                                 if(bestOreint==Orientation.NONE){
+                                    bestNodeId=id;
+                                    bestOreint = nextOrientation;
+                                }
+                                break;
+                            case Orientation.EAST:
+                                if(bestOreint==Orientation.NONE || bestOreint==Orientation.SOUTH){
+                                    bestNodeId=id;
+                                    bestOreint = nextOrientation;
+                                }
+                                break;
+                            case Orientation.NORTH:
+                                if(bestOreint==Orientation.NONE || bestOreint==Orientation.EAST || bestOreint==Orientation.SOUTH){
+                                    bestNodeId=id;
+                                    bestOreint = nextOrientation;                               
+                                }
+                                break;
+                            case Orientation.WEST:
+                                bestNodeId=id;
+                                bestOreint = nextOrientation;
+                                break;
+                        } 
+                        tragetNodeId = bestNodeId;
+                    }else{
+                        float xLast =  tree.getNode(lastNodeId).getPositionX();
+                        float zLast =  tree.getNode(lastNodeId).getPositionZ();
+                        Orientation nextOrientation = MST.getOrientation(xCurrent,zCurrent,xNext,zNext);
+                        if(MST.getOrientation(xLast,zLast,xCurrent,zCurrent)==Orientation.NORTH){
+                            switch(nextOrientation){
+                                case Orientation.SOUTH:
+                                    if(bestOreint==Orientation.NONE){
+                                        bestNodeId=id;
+                                        bestOreint = nextOrientation;
+                                    }
+                                    break;
+                                case Orientation.EAST:
+                                    if(bestOreint==Orientation.NONE || bestOreint==Orientation.SOUTH){
+                                        bestNodeId=id;
+                                        bestOreint = nextOrientation;
+                                    }
+                                    break;
+                                case Orientation.NORTH:
+                                    if(bestOreint==Orientation.NONE || bestOreint==Orientation.EAST || bestOreint==Orientation.SOUTH){
+                                        bestNodeId=id;
+                                        bestOreint = nextOrientation;                               }
+                                    break;
+                                case Orientation.WEST:
+                                    bestNodeId=id;
+                                    bestOreint = nextOrientation;
+                                    break;
+                            }
+                        }
+
+                        else if(MST.getOrientation(xLast,zLast,xCurrent,zCurrent)==Orientation.EAST){
+                            switch(nextOrientation){
+                                case Orientation.WEST:
+                                    if(bestOreint==Orientation.NONE){
+                                        bestNodeId=id;
+                                        bestOreint = nextOrientation;
+                                    }
+                                    break;
+                                case Orientation.SOUTH:
+                                    if(bestOreint==Orientation.NONE || bestOreint ==Orientation.WEST){
+                                        bestNodeId=id;
+                                        bestOreint = nextOrientation;
+                                    }
+                                    break;
+                                case Orientation.EAST:
+                                    if(bestOreint==Orientation.NONE || bestOreint==Orientation.SOUTH || bestOreint ==Orientation.WEST){
+                                        bestNodeId=id;
+                                        bestOreint = nextOrientation;                               }
+                                    break;
+                                case Orientation.NORTH:
+                                    bestNodeId=id;
+                                    bestOreint = nextOrientation;
+                                    break;
+                            }
+                        }
+
+                        else if(MST.getOrientation(xLast,zLast,xCurrent,zCurrent)==Orientation.SOUTH){
+                            switch(nextOrientation){
+                                case Orientation.NORTH:
+                                    if(bestOreint==Orientation.NONE){
+                                        bestNodeId=id;
+                                        bestOreint = nextOrientation;
+                                    }
+                                    break;
+                                case Orientation.WEST:
+                                    if(bestOreint==Orientation.NONE || bestOreint==Orientation.NORTH){
+                                        bestNodeId=id;
+                                        bestOreint = nextOrientation;
+                                    }
+                                    break;
+                                case Orientation.SOUTH:
+                                    if(bestOreint==Orientation.NONE || bestOreint==Orientation.WEST || bestOreint==Orientation.NORTH){
+                                        bestNodeId=id;
+                                        bestOreint = nextOrientation;                               
+                                    }
+                                    break;
+                                case Orientation.EAST:
+                                    bestNodeId=id;
+                                    bestOreint = nextOrientation;
+                                    break;
+                            }
+                        }
+                        else{
+                            switch(nextOrientation){
+                                case Orientation.EAST:
+                                    if(bestOreint==Orientation.NONE){
+                                        bestNodeId=id;
+                                        bestOreint = nextOrientation;
+                                    }
+                                    break;
+                                case Orientation.NORTH:
+                                    if(bestOreint==Orientation.NONE || bestOreint==Orientation.EAST){
+                                        bestNodeId=id;
+                                        bestOreint = nextOrientation;
+                                    }
+                                    break;
+                                case Orientation.WEST:
+                                    if(bestOreint==Orientation.NONE || bestOreint==Orientation.NORTH | bestOreint==Orientation.EAST){
+                                        bestNodeId=id;
+                                        bestOreint = nextOrientation;                               
+                                        }
+                                    break;
+                                case Orientation.SOUTH:
+                                    bestNodeId=id;
+                                    bestOreint = nextOrientation;
+                                    break;
+                            }
+                        }
+                    }
+                    
+                    
+                }
+                Debug.Log(lastNodeId);
+                Debug.Log(tragetNodeId);
+                Debug.Log(bestNodeId);
+                lastNodeId = tragetNodeId;
+                tragetNodeId = bestNodeId;
+
+            }
+
+
+            Vector3 target=tree.getNode(tragetNodeId).getPosition();
+            Vector3 carToTarget = m_Car.transform.InverseTransformPoint(target);
+            float newSteer = (carToTarget.x / carToTarget.magnitude);
+            float newSpeed = (carToTarget.z / carToTarget.magnitude);
+            float handBreak = 0f;
 
             // Execute your path here
             // ...
@@ -131,12 +313,12 @@ namespace UnityStandardAssets.Vehicles.Car
             float grid_center_x = terrain_manager.myInfo.get_x_pos(i);
             float grid_center_z = terrain_manager.myInfo.get_z_pos(j);
 
-            Debug.DrawLine(transform.position, new Vector3(grid_center_x, 0f, grid_center_z));
+            Debug.DrawLine(transform.position, target);
 
 
             // this is how you control the car
             //Debug.Log("Steering:" + steering + " Acceleration:" + acceleration);
-            m_Car.Move(steering, acceleration, acceleration, 0f);
+            m_Car.Move(newSteer, newSpeed, newSpeed, 0f);
             //m_Car.Move(0f, -1f, 1f, 0f);
 
 
