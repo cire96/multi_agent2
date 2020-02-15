@@ -69,7 +69,7 @@ public class PathPlanning : MonoBehaviour {
             Color[] c = { Color.red, Color.blue, Color.yellow };
             foreach (KeyValuePair<int, Node> pair in subtrees[i].getNodes ()) {
                 foreach (int id in subtrees[i].getAdjList (pair.Value.getId ())) {
-                    Debug.DrawLine (subtrees[i].getNode (id).getPosition (), pair.Value.getPosition (), c[i % 3], 100f);
+                    Debug.DrawLine (subtrees[i].getNode (id).getPosition (), pair.Value.getPosition (), c[i % 3], 10000f);
                 }
             }
         }
