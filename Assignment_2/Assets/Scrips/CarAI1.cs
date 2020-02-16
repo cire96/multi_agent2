@@ -22,9 +22,11 @@ namespace UnityStandardAssets.Vehicles.Car {
         int tragetNodeId = 0;
         int lastNodeId = -1;
         Orientation bestOrient = Orientation.NONE;
+        bool backing = false;
         float x_offset = 0;
         float z_offset = 0;
         float offset_magnitude = 5;
+
 
         private void Start () {
             // get the car controller
@@ -240,10 +242,56 @@ namespace UnityStandardAssets.Vehicles.Car {
             target[0] += x_offset;
             target[2] += z_offset;
 
-            Vector3 carToTarget = m_Car.transform.InverseTransformPoint (target);
+            /*Vector3 carToTarget = m_Car.transform.InverseTransformPoint (target);
             float newSteer = (carToTarget.x / carToTarget.magnitude);
             float newSpeed = (carToTarget.z / carToTarget.magnitude);
+            float handBreak = 0f;*/
+            Vector3 carToTarget = m_Car.transform.InverseTransformPoint(target);
+            float newSteer = (carToTarget.x / carToTarget.magnitude);
+            float newSpeed = 1f;//(carToTarget.z / carToTarget.magnitude);
+
+            float infrontOrbehind = (carToTarget.z / carToTarget.magnitude);
+            if(infrontOrbehind<0){
+                newSpeed =-1;
+                if(newSteer<0){
+                    newSteer =1;
+                }else{
+                    newSteer =-1;
+                }
+            }else{newSpeed = 1f;}
+            //if(infrontOrbehind<0 && Mathf.Abs(newSteer)<0.1){newSteer =1;}
             float handBreak = 0f;
+
+            Vector3 steeringPoint = (transform.rotation * new Vector3(0,0,1));
+            RaycastHit rayHit;
+            LayerMask mask = LayerMask.GetMask("CubeWalls");
+            //bool hitBack = body.SweepTest(steeringPoint,out rayHit, 2.0f);
+            //bool hitContinue = body.SweepTest(steeringPoint,out rayHit, 8.0f);
+            bool hitBack  = Physics.SphereCast(transform.position,3.0f,steeringPoint,out rayHit,3.0f, mask);
+            bool hitForward  = Physics.SphereCast(transform.position,3.0f, -steeringPoint,out rayHit,2.5f,  mask);
+            Debug.DrawRay(transform.position, steeringPoint*5.0f,Color.cyan,0.1f);
+            Debug.DrawRay(transform.position, -steeringPoint*5.0f,Color.red,0.1f);
+            bool hitContinue = Physics.SphereCast(transform.position,3.0f,steeringPoint,out rayHit,12.0f, mask);
+            if(hitBack){
+                backing=true;
+                newSpeed=-1f;
+                if(m_Car.BrakeInput>0 && m_Car.AccelInput<=0){
+                    newSteer=-newSteer;
+                }
+                print("back");
+
+            }
+            //if(hitContinue && m_Car.AccelInput>=0 && backing==false){newSteer= newSteer*2;} 
+            if(hitContinue && backing==true ){
+                newSpeed=-1f;
+                newSteer=-newSteer;
+                print("continue");
+            }else{
+                backing=false;
+            }
+            if(hitForward){
+                newSpeed=1;
+            }
 
             Debug.DrawLine (transform.position, target);
 
