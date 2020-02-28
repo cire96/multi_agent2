@@ -1242,7 +1242,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292624250}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac0615546388c46a68ca4014cce1578b, type: 3}
   m_Name: 
@@ -19412,7 +19412,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056475042}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac0615546388c46a68ca4014cce1578b, type: 3}
   m_Name: 
@@ -21939,7 +21939,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrain_manager_game_object: {fileID: 1358011048}
-  friends: []
 --- !u!4 &1475518417
 Transform:
   m_ObjectHideFlags: 0

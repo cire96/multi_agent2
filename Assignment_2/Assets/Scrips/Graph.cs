@@ -99,4 +99,9 @@ public class Graph {
     public Node getRandomNode () {
         return nodes[new System.Random ().Next (nodes.Count)];
     }
+    /*public void setAllCost(float c){
+        foreach (Node n in nodes){
+            n.setCost(c);
+        }
+    }*/
 }
