@@ -6,6 +6,7 @@ public class Node{
     private Vector3 position;
     private float x, z;
     private Node parent;
+    //private float Cost;
 
     
     public Node getParent()
@@ -65,4 +66,10 @@ public class Node{
         z = _z;
         position.z = _z;
     }
+    /*public void setCost(float c){
+        cost=c;
+    }
+    public float getCost(){
+        return cost;
+    }*/
 }
