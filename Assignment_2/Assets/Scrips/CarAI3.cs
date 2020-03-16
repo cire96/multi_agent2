@@ -108,68 +108,73 @@ namespace UnityStandardAssets.Vehicles.Car
             if(8.0f>Vector3.Distance(transform.position,mapGraph.getNode(currentPath[tragetNodeId]).getPosition()) && tragetNodeId!=currentPath.Count-1){
                 tragetNodeId++;
             }
-            Vector3 target = mapGraph.getNode(currentPath[tragetNodeId]).getPosition();
+
+            if(targetTurret!=null){
+               
             
+                Vector3 target = mapGraph.getNode(currentPath[tragetNodeId]).getPosition();
+            
+                Vector3 carToTarget = m_Car.transform.InverseTransformPoint(target);
+                float newSteer = (carToTarget.x / carToTarget.magnitude);
+                float newSpeed = 1f;//(carToTarget.z / carToTarget.magnitude);
 
-            Vector3 carToTarget = m_Car.transform.InverseTransformPoint(target);
-            float newSteer = (carToTarget.x / carToTarget.magnitude);
-            float newSpeed = 1f;//(carToTarget.z / carToTarget.magnitude);
+                float infrontOrbehind = (carToTarget.z / carToTarget.magnitude);
+                if(infrontOrbehind<-0.5){
+                    newSpeed =-1;
+                    if(newSteer<0){
+                        newSteer =1;
+                    }else{
+                        newSteer =-1;
+                    }
+                }else{newSpeed = 1f;}
+                //if(infrontOrbehind<0 && Mathf.Abs(newSteer)<0.1){newSteer =1;}
+                float handBreak = 0f;
 
-            float infrontOrbehind = (carToTarget.z / carToTarget.magnitude);
-            if(infrontOrbehind<-0.5){
-                newSpeed =-1;
-                if(newSteer<0){
-                    newSteer =1;
-                }else{
-                    newSteer =-1;
+                Vector3 steeringPoint = (transform.rotation * new Vector3(0,0,1));
+                RaycastHit rayHit;
+                LayerMask mask = LayerMask.GetMask("CubeWalls");
+                //bool hitBack = body.SweepTest(steeringPoint,out rayHit, 2.0f);
+                //bool hitContinue = body.SweepTest(steeringPoint,out rayHit, 8.0f);
+                bool hitBack  = Physics.SphereCast(transform.position,3.0f,steeringPoint,out rayHit,4.0f, mask);
+                bool hitForward  = Physics.SphereCast(transform.position,3.0f, -steeringPoint,out rayHit,2.5f,  mask);
+                Debug.DrawRay(transform.position, steeringPoint*5.0f,Color.cyan,0.1f);
+                Debug.DrawRay(transform.position, -steeringPoint*5.0f,Color.red,0.1f);
+                bool hitContinue = Physics.SphereCast(transform.position,3.0f,steeringPoint,out rayHit,12.0f, mask);
+                if(hitBack){
+                    backing=true;
+                    newSpeed=-1f;
+                    if(m_Car.BrakeInput>0 && m_Car.AccelInput<=0){
+                        newSteer=-newSteer;
+                    }
+                    print("back");
+
                 }
-            }else{newSpeed = 1f;}
-            //if(infrontOrbehind<0 && Mathf.Abs(newSteer)<0.1){newSteer =1;}
-            float handBreak = 0f;
-
-            Vector3 steeringPoint = (transform.rotation * new Vector3(0,0,1));
-            RaycastHit rayHit;
-            LayerMask mask = LayerMask.GetMask("CubeWalls");
-            //bool hitBack = body.SweepTest(steeringPoint,out rayHit, 2.0f);
-            //bool hitContinue = body.SweepTest(steeringPoint,out rayHit, 8.0f);
-            bool hitBack  = Physics.SphereCast(transform.position,3.0f,steeringPoint,out rayHit,3.0f, mask);
-            bool hitForward  = Physics.SphereCast(transform.position,3.0f, -steeringPoint,out rayHit,2.5f,  mask);
-            Debug.DrawRay(transform.position, steeringPoint*5.0f,Color.cyan,0.1f);
-            Debug.DrawRay(transform.position, -steeringPoint*5.0f,Color.red,0.1f);
-            bool hitContinue = Physics.SphereCast(transform.position,3.0f,steeringPoint,out rayHit,12.0f, mask);
-            if(hitBack){
-                backing=true;
-                newSpeed=-1f;
-                if(m_Car.BrakeInput>0 && m_Car.AccelInput<=0){
+                //if(hitContinue && m_Car.AccelInput>=0 && backing==false){newSteer= newSteer*2;} 
+                if(hitContinue && backing==true ){
+                    newSpeed=-1f;
                     newSteer=-newSteer;
+                    print("continue");
+                }else{
+                    backing=false;
                 }
-                print("back");
+                if(hitForward){
+                    newSpeed=1;
+                }
 
-            }
-            //if(hitContinue && m_Car.AccelInput>=0 && backing==false){newSteer= newSteer*2;} 
-            if(hitContinue && backing==true ){
-                newSpeed=-1f;
-                newSteer=-newSteer;
-                print("continue");
+                Debug.DrawLine (transform.position, target);
+
+                // this is how you control the car
+                //Debug.Log("Steering:" + steering + " Acceleration:" + acceleration);
+                m_Car.Move (newSteer, newSpeed, newSpeed, 0f);
             }else{
-                backing=false;
+                m_Car.Move (0f, 0f, 0f, 0f);
+                print("stop");
             }
-            if(hitForward){
-                newSpeed=1;
-            }
-
-            Debug.DrawLine (transform.position, target);
-
-            // this is how you control the car
-            //Debug.Log("Steering:" + steering + " Acceleration:" + acceleration);
-            m_Car.Move (newSteer, newSpeed, newSpeed, 0f);
             
 
         }
 
         public List<int> aStar(int start, int Goal){
-            print(start);
-            print(Goal);
             //var numbers2 = new List<int>() { 2, 3, 5, 7 };
             List<int> openSet = new List<int>() {start};
             Dictionary<int,int> cameFrom = new Dictionary<int,int>();
