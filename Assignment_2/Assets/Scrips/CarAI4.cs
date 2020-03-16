@@ -25,8 +25,11 @@ namespace UnityStandardAssets.Vehicles.Car
         int currentNode = 0;
         Vector3 target;
         float timer = 0;
-        float waitTime = 0.3f;
+        float waitTime = 0.2f;
         bool firstNodeBool = false;
+        float lastDistance=30.0f;
+        Vector3 lastPoint = new Vector3(0,0,0);
+        
 
 
 
@@ -54,20 +57,60 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void FixedUpdate()
         {
+            Vector3 off=new Vector3(0,0,0);
+            LayerMask mask = LayerMask.GetMask("CubeWalls");
+            float distanceToPoint;
+            if(0==Nr%2){
+                RaycastHit evenInfo;
+                bool hiteven = Physics.SphereCast(friends[0].transform.position+(new Vector3(0,2,0)),5.0f,friends[0].transform.rotation*(new Vector3(-1,0,0)),out evenInfo,40.0f,mask);
+                //bool hiteven = Physics.Raycast(friends[0].transform.position+(new Vector3(0,2,0)),friends[0].transform.rotation*(new Vector3(-1,0,0)),out evenInfo,40.0f,mask);
+                Debug.DrawRay(friends[0].transform.position+(new Vector3(0,2,0)), friends[0].transform.rotation*(new Vector3(-1,0,0)) * 40.0f, Color.cyan,0.1f);
+                if(hiteven){
+                    distanceToPoint=evenInfo.distance-5.0f;
+                }else{
+                    distanceToPoint=lastDistance;
+                }
+                if(distanceToPoint>lastDistance && 3.0f>(distanceToPoint-lastDistance)){
+                    distanceToPoint=lastDistance+3.0f;
+                }
+            }else{
+                RaycastHit oddInfo;
+                bool hitodd = Physics.SphereCast(friends[0].transform.position+(new Vector3(0,2,0)),5.0f,friends[0].transform.rotation*(new Vector3(1,0,0)),out oddInfo,40.0f,mask);
+                //bool hitodd=Physics.Raycast(friends[0].transform.position+(new Vector3(0,2,0)),friends[0].transform.rotation*(new Vector3(1,0,0)),out oddInfo,40.0f,mask);
+                Debug.DrawRay(friends[0].transform.position+(new Vector3(0,2,0)), friends[0].transform.rotation*(new Vector3(1,0,0)) * 40.0f, Color.cyan,0.1f);
+                if(hitodd){
+                    distanceToPoint=oddInfo.distance-5.0f;
+                }else{
+                    distanceToPoint=lastDistance;
+                }
+                
+                print("first: "+distanceToPoint.ToString());
+                if(distanceToPoint>lastDistance && 3.0f>(distanceToPoint-lastDistance)){
+                    distanceToPoint=lastDistance+3.0f;
+                }
+            }
+            lastDistance=distanceToPoint;
+
+
+            if(Nr==0){
+                off = friends[0].transform.rotation*(new Vector3(-(distanceToPoint/2),0,-00));
+            }else if(Nr==2){
+                off = friends[0].transform.rotation*(new Vector3(-distanceToPoint,0,-00));
+            }else if(Nr==1){
+                off = friends[0].transform.rotation*(new Vector3((distanceToPoint/2),0,-00));
+            }else if(Nr==3){
+                off = friends[0].transform.rotation*(new Vector3(distanceToPoint,0,-00));
+                print(distanceToPoint);
+            }
+            
 
             if(!firstNodeBool){
-                Vector3 off=new Vector3(0,0,0);
-                if(Nr==0){
-                    off = friends[0].transform.rotation*(new Vector3(-10,0,-20));
-                }else if(Nr==1){
-                    off = friends[0].transform.rotation*(new Vector3(10,0,-20));
-                }else if(Nr==2){
-                    off = friends[0].transform.rotation*(new Vector3(-25,0,-30));
-                }else if(Nr==3){
-                    off = friends[0].transform.rotation*(new Vector3(25,0,-30));
-                }
+            
                 Vector3 pos=friends[0].transform.position+off;
                 waypointList.Add(pos);
+                lastPoint=pos;
+
+                firstNodeBool=true;
             }
             // Execute your path here
             // ...
@@ -76,16 +119,7 @@ namespace UnityStandardAssets.Vehicles.Car
             // Check if we have reached beyond 2 seconds.
             // Subtracting two is more accurate over time than resetting to zero.
             if (timer > waitTime){
-                Vector3 off=new Vector3(0,0,0);
-                if(Nr==0){
-                    off = friends[0].transform.rotation*(new Vector3(-5,0,-20));
-                }else if(Nr==1){
-                    off = friends[0].transform.rotation*(new Vector3(5,0,-20));
-                }else if(Nr==2){
-                    off = friends[0].transform.rotation*(new Vector3(-10,0,-30));
-                }else if(Nr==3){
-                    off = friends[0].transform.rotation*(new Vector3(10,0,-30));
-                }
+                
                 friendsPosition.Add(friends[0].transform.position);
                 friendsOrientation.Add(friends[0].transform.rotation);
                 
@@ -96,15 +130,17 @@ namespace UnityStandardAssets.Vehicles.Car
                 Vector3 pos=friends[0].transform.position+off;
                 waypointList.Add(pos);
                 cube.transform.position=new Vector3(pos.x,0.0f,pos.z);
+                Debug.DrawLine(pos,lastPoint,Color.red,1000);
+                lastPoint=pos;
 
                 // Remove the recorded 2 seconds.
                 timer = timer - waitTime;
             }
 
             
-            if( currentNode<waypointList.Count  ){//&& Vector3.Distance(transform.position, waypointList[currentNode])<5.0f
+            if( currentNode<waypointList.Count  && Vector3.Distance(transform.position, waypointList[currentNode])<15.0f){//&& Vector3.Distance(transform.position, waypointList[currentNode])<5.0f
                 //currentNode++;
-                print("HOW do i get in here");
+
                 float tempLength=100000;
                 int tempNode=currentNode;
                 for(int i=currentNode+1;i<waypointList.Count;i++){
@@ -141,7 +177,6 @@ namespace UnityStandardAssets.Vehicles.Car
 
             Vector3 steeringPoint = (transform.rotation * new Vector3(0,0,1));
             RaycastHit rayHit;
-            LayerMask mask = LayerMask.GetMask("CubeWalls");
             //bool hitBack = body.SweepTest(steeringPoint,out rayHit, 2.0f);
             //bool hitContinue = body.SweepTest(steeringPoint,out rayHit, 8.0f);
             bool hitBack  = Physics.SphereCast(transform.position,3.0f,steeringPoint,out rayHit,3.0f, mask);
