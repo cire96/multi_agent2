@@ -17,6 +17,8 @@ namespace UnityStandardAssets.Vehicles.Car
         public GameObject[] friends;
         public GameObject[] enemies;
         public int Nr;
+        public float speedParam = 1.0f;
+        public float lengthToGoal= 1.0f;
         bool backing =false;
         List<Vector3> friendsPosition = new List<Vector3>();
         List<Quaternion> friendsOrientation = new List<Quaternion>();
@@ -25,7 +27,7 @@ namespace UnityStandardAssets.Vehicles.Car
         int currentNode = 0;
         Vector3 target;
         float timer = 0;
-        float waitTime = 0.2f;
+        float waitTime = 0.5f;
         bool firstNodeBool = false;
         float lastDistance=30.0f;
         Vector3 lastPoint = new Vector3(0,0,0);
@@ -84,7 +86,6 @@ namespace UnityStandardAssets.Vehicles.Car
                     distanceToPoint=lastDistance;
                 }
                 
-                print("first: "+distanceToPoint.ToString());
                 if(distanceToPoint>lastDistance && 3.0f>(distanceToPoint-lastDistance)){
                     distanceToPoint=lastDistance+3.0f;
                 }
@@ -100,7 +101,6 @@ namespace UnityStandardAssets.Vehicles.Car
                 off = friends[0].transform.rotation*(new Vector3((distanceToPoint/2),0,-00));
             }else if(Nr==3){
                 off = friends[0].transform.rotation*(new Vector3(distanceToPoint,0,-00));
-                print(distanceToPoint);
             }
             
 
@@ -114,23 +114,26 @@ namespace UnityStandardAssets.Vehicles.Car
             }
             // Execute your path here
             // ...
-            timer += Time.deltaTime;
 
-            // Check if we have reached beyond 2 seconds.
+            timer += Time.deltaTime;
+            // Check if we have reached beyond 0.2 seconds.
             // Subtracting two is more accurate over time than resetting to zero.
             if (timer > waitTime){
                 
                 friendsPosition.Add(friends[0].transform.position);
                 friendsOrientation.Add(friends[0].transform.rotation);
                 
-                GameObject cube = GameObject.CreatePrimitive (PrimitiveType.Cube);
+                Vector3 pos=friends[0].transform.position+off;
+                waypointList.Add(pos);
+
+
+                /*GameObject cube = GameObject.CreatePrimitive (PrimitiveType.Cube);
                 Collider c = cube.GetComponent<Collider> ();
                 c.enabled = false;
                 cube.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
-                Vector3 pos=friends[0].transform.position+off;
-                waypointList.Add(pos);
-                cube.transform.position=new Vector3(pos.x,0.0f,pos.z);
-                Debug.DrawLine(pos,lastPoint,Color.red,1000);
+                cube.transform.position=new Vector3(pos.x,0.0f,pos.z);*/
+
+                Debug.DrawLine(pos,lastPoint,Color.red,25);
                 lastPoint=pos;
 
                 // Remove the recorded 2 seconds.
@@ -138,10 +141,13 @@ namespace UnityStandardAssets.Vehicles.Car
             }
 
             
-            if( currentNode<waypointList.Count  && Vector3.Distance(transform.position, waypointList[currentNode])<15.0f){//&& Vector3.Distance(transform.position, waypointList[currentNode])<5.0f
+            if( currentNode<waypointList.Count  ){//&& Vector3.Distance(transform.position, waypointList[currentNode])<15.0f
                 //currentNode++;
+                float tempLength=10.0f;
+                if(currentNode+1<waypointList.Count){
+                    tempLength=Vector3.Distance(waypointList[currentNode], waypointList[currentNode+1])+10.0f;
+                }
 
-                float tempLength=100000;
                 int tempNode=currentNode;
                 for(int i=currentNode+1;i<waypointList.Count;i++){
                     if(Vector3.Distance(transform.position, waypointList[i])<tempLength){
@@ -150,11 +156,32 @@ namespace UnityStandardAssets.Vehicles.Car
                     }
                 }
                 currentNode=tempNode;
+                if(2<waypointList.Count){
+                    float tempDistance = 0.0f;  
+                    for(int i=currentNode;i<waypointList.Count-2;i++){
+                        print(waypointList[currentNode+1]);
+                        tempDistance =+ Vector3.Distance(waypointList[currentNode], waypointList[currentNode+1]);
+                    }
+                    lengthToGoal = tempDistance;
+                }
             }
+
+            //what of cars aprox length to optimal point is longest.
+            float longestLeangthToGoal = 0;
+            for(int i=1;i<friends.Length;i++){
+                if(longestLeangthToGoal<friends[i].GetComponent<CarAI4>().lengthToGoal){
+                    longestLeangthToGoal=friends[i].GetComponent<CarAI4>().lengthToGoal;
+                }
+            }
+            //Speed param on witch has the longest way to go and how much 
+            //closer others are to there optimal position
+            speedParam=lengthToGoal/longestLeangthToGoal;
+
+
             target = waypointList[currentNode];
             Vector3 carToTarget = m_Car.transform.InverseTransformPoint(target);
             float newSteer = (carToTarget.x / carToTarget.magnitude);
-            float newSpeed = 1f;//(carToTarget.z / carToTarget.magnitude);
+            float newSpeed = (float) Math.Exp(-speedParam);
 
             
             float infrontOrbehind = (carToTarget.z / carToTarget.magnitude);
@@ -203,6 +230,10 @@ namespace UnityStandardAssets.Vehicles.Car
             }
             if(hitForward){
                 newSpeed=1;
+            }
+            
+            if(20.0f>Vector3.Distance(transform.position,waypointList[waypointList.Count-1])){
+                newSpeed=-1/(20.0f-Vector3.Distance(transform.position,waypointList[waypointList.Count-1]));
             }
 
             Debug.DrawLine (transform.position, target);
