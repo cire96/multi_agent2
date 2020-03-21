@@ -15,8 +15,8 @@ namespace UnityStandardAssets.Vehicles.Car
         TerrainManager terrain_manager;
 
         public GameObject[] friends;
-        public GameObject[] enemies;
-        public GameObject[] myEnemies;
+        
+        public List<GameObject>  myEnemies;
         public int nr;
         Graph mapGraph;
         int[,] nodeIdMatrix;
@@ -24,6 +24,7 @@ namespace UnityStandardAssets.Vehicles.Car
         List<int> currentPath;
         int tragetNodeId = 0;
         bool backing=false;
+        bool start = true;
 
         private void Start()
         {
@@ -33,12 +34,20 @@ namespace UnityStandardAssets.Vehicles.Car
             TerrainInfo terrainInfo = terrain_manager.myInfo;
             float[, ] traversability = terrainInfo.traversability;
             int xLen = traversability.GetLength(0);int zLen = traversability.GetLength(1);
+
             TerrainGraph TerrainGraphScript = GameObject.Find("AwakeObj").GetComponent<TerrainGraph>();
-             
             TerrainGraphScript.makeMap();
             
             mapGraph = TerrainGraphScript.mapGraph;
             nodeIdMatrix = TerrainGraphScript.nodeIdMatrix;
+
+            TurretGraph turretGraphScript = GameObject.Find("TurretGraphObj").GetComponent<TurretGraph>();
+            print(turretGraphScript);
+            turretGraphScript.makeMap();
+            List<GameObject> enemies = turretGraphScript.enemiePrio;
+
+
+
             
 
             
@@ -46,33 +55,29 @@ namespace UnityStandardAssets.Vehicles.Car
 
             // note that both arrays will have holes when objects are destroyed
             // but for initial planning they should work
-            friends = GameObject.FindGameObjectsWithTag("Player");
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+
             int nrCars = 3; 
-            int len = (int)Math.Floor(enemies.Length/3.0f);
+            int len = (int)Math.Floor(GameObject.FindGameObjectsWithTag("Enemy").GetLength(0)/3.0f);
+            print(len);
             if(nr==nrCars-1){
 
-                myEnemies = new GameObject[enemies.Length-(nr*len)];
-                int j=0;
-                for(int i = nr*len;i<enemies.Length;i++){
+
+                for(int i = nr*len;i<enemies.Count;i++){
                     //print(enemies[i].transform.position);
-                    myEnemies[j] = enemies[i];
-                    j++;
+                    myEnemies.Add( enemies[i]);
                 }
             }
             else{
-                myEnemies = new GameObject[len];
-                int j=0;
+
                 for(int i = nr*len;i<(nr+1)*len;i++){
                     //print(enemies[i].transform.position);
-                    myEnemies[j] = enemies[i];
-                    j++;
+                    myEnemies.Add( enemies[i]);
+
                 }
             }
-            foreach (GameObject obj in myEnemies)
-            {
-                Debug.DrawLine(transform.position, obj.transform.position, Color.black, 10f);
-            }
+            print(myEnemies.Count);
+            
 
 
             // Plan your path here
@@ -82,6 +87,12 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void FixedUpdate()
         {
+            if(start){
+                start=false;
+                if(Vector3.Distance(transform.position,myEnemies[0].transform.position)>Vector3.Distance(transform.position,myEnemies[myEnemies.Count-1].transform.position)){
+                    myEnemies.Reverse();
+                }
+            }
 
             if(targetTurret==null){
                 foreach(GameObject enemy in myEnemies){
@@ -135,11 +146,11 @@ namespace UnityStandardAssets.Vehicles.Car
                 LayerMask mask = LayerMask.GetMask("CubeWalls");
                 //bool hitBack = body.SweepTest(steeringPoint,out rayHit, 2.0f);
                 //bool hitContinue = body.SweepTest(steeringPoint,out rayHit, 8.0f);
-                bool hitBack  = Physics.SphereCast(transform.position,3.0f,steeringPoint,out rayHit,4.0f, mask);
-                bool hitForward  = Physics.SphereCast(transform.position,3.0f, -steeringPoint,out rayHit,2.5f,  mask);
+                bool hitBack  = Physics.SphereCast(transform.position,2.0f,steeringPoint,out rayHit,4.0f, mask);
+                bool hitForward  = Physics.SphereCast(transform.position,2.0f, -steeringPoint,out rayHit,2.5f,  mask);
                 Debug.DrawRay(transform.position, steeringPoint*5.0f,Color.cyan,0.1f);
                 Debug.DrawRay(transform.position, -steeringPoint*5.0f,Color.red,0.1f);
-                bool hitContinue = Physics.SphereCast(transform.position,3.0f,steeringPoint,out rayHit,12.0f, mask);
+                bool hitContinue = Physics.SphereCast(transform.position,2.0f,steeringPoint,out rayHit,12.0f, mask);
                 if(hitBack){
                     backing=true;
                     newSpeed=-1f;
@@ -169,6 +180,11 @@ namespace UnityStandardAssets.Vehicles.Car
             }else{
                 m_Car.Move (0f, 0f, 0f, 0f);
                 print("stop");
+            }
+
+            foreach (GameObject obj in myEnemies)
+            {
+                if(obj!=null){Debug.DrawLine(transform.position, obj.transform.position, Color.black);}
             }
             
 

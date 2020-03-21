@@ -87,7 +87,7 @@ public class Node{
         cube = _c;
         Collider c = cube.GetComponent<Collider> ();
         c.enabled = false;
-        cube.transform.localScale = new Vector3 (5.5f, 5.5f, 5.5f);
+        cube.transform.localScale = new Vector3 (1.5f, 1.5f, 1.5f);
         cube.transform.position = new Vector3 (x, 0, z);
                     
     }

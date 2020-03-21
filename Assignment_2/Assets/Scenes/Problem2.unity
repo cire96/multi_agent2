@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6580122}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 17885304}
   - component: {fileID: 17885302}
   - component: {fileID: 17885301}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelHubRearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 25053812}
   - component: {fileID: 25053814}
   - component: {fileID: 25053813}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Barrel_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 27480849}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 37496220}
   - component: {fileID: 37496222}
   - component: {fileID: 37496221}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Arm_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 49000347}
   - component: {fileID: 49000345}
   - component: {fileID: 49000346}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelHubRearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,7 +699,7 @@ GameObject:
   - component: {fileID: 65555736}
   - component: {fileID: 65555734}
   - component: {fileID: 65555735}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelHubFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -871,7 +871,7 @@ GameObject:
   - component: {fileID: 71445795}
   - component: {fileID: 71445797}
   - component: {fileID: 71445796}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarHeadLightsGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -949,7 +949,7 @@ GameObject:
   - component: {fileID: 71684682}
   - component: {fileID: 71684684}
   - component: {fileID: 71684683}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_GunBody_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1025,7 +1025,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 74111689}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CameraFocusPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1057,7 +1057,7 @@ GameObject:
   - component: {fileID: 84603904}
   - component: {fileID: 84603906}
   - component: {fileID: 84603905}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_BaseRotation_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1135,7 +1135,7 @@ GameObject:
   - component: {fileID: 120062876}
   - component: {fileID: 120062878}
   - component: {fileID: 120062877}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletImpact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5888,7 +5888,7 @@ GameObject:
   - component: {fileID: 138796519}
   - component: {fileID: 138796521}
   - component: {fileID: 138796520}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Traser_ParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10643,7 +10643,7 @@ GameObject:
   - component: {fileID: 157058292}
   - component: {fileID: 157058291}
   - component: {fileID: 157058290}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ColliderFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10739,7 +10739,7 @@ GameObject:
   - component: {fileID: 172169029}
   - component: {fileID: 172169027}
   - component: {fileID: 172169028}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArmedCar (2)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -10775,8 +10775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrain_manager_game_object: {fileID: 342108197}
-  friends: []
-  enemies: []
+  backing: 0
   nr: 0
 --- !u!114 &172169029
 MonoBehaviour:
@@ -10927,7 +10926,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 189314788}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10963,7 +10962,7 @@ GameObject:
   - component: {fileID: 198492763}
   - component: {fileID: 198492765}
   - component: {fileID: 198492764}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Base_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11039,7 +11038,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 233509205}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Helpers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11071,7 +11070,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 249641909}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11108,7 +11107,7 @@ GameObject:
   - component: {fileID: 250524365}
   - component: {fileID: 250524363}
   - component: {fileID: 250524364}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelHubFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11280,7 +11279,7 @@ GameObject:
   - component: {fileID: 252479055}
   - component: {fileID: 252479057}
   - component: {fileID: 252479056}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarWheelFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11358,7 +11357,7 @@ GameObject:
   - component: {fileID: 270664695}
   - component: {fileID: 270664697}
   - component: {fileID: 270664696}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Arm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11436,7 +11435,7 @@ GameObject:
   - component: {fileID: 287255199}
   - component: {fileID: 287255201}
   - component: {fileID: 287255200}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_BaseRotation_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11590,7 +11589,7 @@ GameObject:
   - component: {fileID: 308739787}
   - component: {fileID: 308739786}
   - component: {fileID: 308739785}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ColliderBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11737,7 +11736,7 @@ GameObject:
   - component: {fileID: 344244547}
   - component: {fileID: 344244546}
   - component: {fileID: 344244545}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ColliderBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11828,7 +11827,7 @@ GameObject:
   - component: {fileID: 362117937}
   - component: {fileID: 362117939}
   - component: {fileID: 362117938}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarWheelRearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11906,7 +11905,7 @@ GameObject:
   - component: {fileID: 379793432}
   - component: {fileID: 379793434}
   - component: {fileID: 379793433}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletImpact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16660,7 +16659,7 @@ GameObject:
   - component: {fileID: 383040919}
   - component: {fileID: 383040918}
   - component: {fileID: 383040917}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ColliderBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16751,7 +16750,7 @@ GameObject:
   - component: {fileID: 398245603}
   - component: {fileID: 398245605}
   - component: {fileID: 398245604}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarWheelFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16830,7 +16829,7 @@ GameObject:
   - component: {fileID: 401989440}
   - component: {fileID: 401989439}
   - component: {fileID: 401989438}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarBrakeLightsGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16920,7 +16919,7 @@ GameObject:
   m_Component:
   - component: {fileID: 412154043}
   - component: {fileID: 412154044}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HeadlightLeftSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17013,7 +17012,7 @@ GameObject:
   - component: {fileID: 442880327}
   - component: {fileID: 442880325}
   - component: {fileID: 442880326}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelHubFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17183,7 +17182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 461035803}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CameraFocusPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17217,7 +17216,7 @@ GameObject:
   - component: {fileID: 516393884}
   - component: {fileID: 516393883}
   - component: {fileID: 516393882}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarMudGuardFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17321,7 +17320,7 @@ GameObject:
   - component: {fileID: 518688730}
   - component: {fileID: 518688732}
   - component: {fileID: 518688731}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MuzzelFlash_ParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22076,7 +22075,7 @@ GameObject:
   - component: {fileID: 533166550}
   - component: {fileID: 533166552}
   - component: {fileID: 533166551}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_BaseRotation_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22152,7 +22151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 545552426}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_BaseRotation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22188,7 +22187,7 @@ GameObject:
   - component: {fileID: 549251039}
   - component: {fileID: 549251041}
   - component: {fileID: 549251040}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_GunBody_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22268,7 +22267,7 @@ GameObject:
   - component: {fileID: 565992733}
   - component: {fileID: 565992732}
   - component: {fileID: 565992731}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarMudGuardFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22372,7 +22371,7 @@ GameObject:
   - component: {fileID: 568755301}
   - component: {fileID: 568755303}
   - component: {fileID: 568755302}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarSuspensionFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22450,7 +22449,7 @@ GameObject:
   - component: {fileID: 573270079}
   - component: {fileID: 573270078}
   - component: {fileID: 573270077}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarWheelRearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22529,7 +22528,7 @@ GameObject:
   - component: {fileID: 588659426}
   - component: {fileID: 588659425}
   - component: {fileID: 588659424}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarBrakeLightsGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22620,7 +22619,7 @@ GameObject:
   - component: {fileID: 599460249}
   - component: {fileID: 599460251}
   - component: {fileID: 599460250}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_GunBody_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22808,7 +22807,7 @@ GameObject:
   - component: {fileID: 670490952}
   - component: {fileID: 670490951}
   - component: {fileID: 670490950}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23063,7 +23062,7 @@ GameObject:
   - component: {fileID: 714264892}
   - component: {fileID: 714264894}
   - component: {fileID: 714264893}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarWheelFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23141,7 +23140,7 @@ GameObject:
   - component: {fileID: 724913752}
   - component: {fileID: 724913751}
   - component: {fileID: 724913750}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23212,7 +23211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 753871095}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23257,7 +23256,7 @@ GameObject:
   - component: {fileID: 795357309}
   - component: {fileID: 795357307}
   - component: {fileID: 795357306}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelHubRearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23427,7 +23426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 816590336}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WaypointTargetObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23459,7 +23458,7 @@ GameObject:
   - component: {fileID: 839591225}
   - component: {fileID: 839591227}
   - component: {fileID: 839591226}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarSuspensionFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23537,7 +23536,7 @@ GameObject:
   - component: {fileID: 849469252}
   - component: {fileID: 849469254}
   - component: {fileID: 849469253}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletShells_ParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28288,7 +28287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 876807191}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelsHubs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28325,7 +28324,7 @@ GameObject:
   - component: {fileID: 889517246}
   - component: {fileID: 889517244}
   - component: {fileID: 889517245}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelHubFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28596,7 +28595,7 @@ GameObject:
   - component: {fileID: 945257728}
   - component: {fileID: 945257730}
   - component: {fileID: 945257729}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarWheelFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28675,7 +28674,7 @@ GameObject:
   - component: {fileID: 966190633}
   - component: {fileID: 966190632}
   - component: {fileID: 966190631}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatlingGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28780,7 +28779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 969500865}
   - component: {fileID: 969500866}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HeadlighRightSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28872,7 +28871,7 @@ GameObject:
   - component: {fileID: 976151490}
   - component: {fileID: 976151492}
   - component: {fileID: 976151491}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Base_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28950,7 +28949,7 @@ GameObject:
   - component: {fileID: 976879833}
   - component: {fileID: 976879835}
   - component: {fileID: 976879834}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarWheelRearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29028,7 +29027,7 @@ GameObject:
   - component: {fileID: 978985201}
   - component: {fileID: 978985200}
   - component: {fileID: 978985199}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarWheelRearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29104,7 +29103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 991864698}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29148,7 +29147,7 @@ GameObject:
   - component: {fileID: 1053201875}
   - component: {fileID: 1053201877}
   - component: {fileID: 1053201876}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_GunBody_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29227,7 +29226,7 @@ GameObject:
   - component: {fileID: 1058816590}
   - component: {fileID: 1058816589}
   - component: {fileID: 1058816588}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ColliderFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29316,7 +29315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1104302527}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_BaseRotation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29350,7 +29349,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1115378789}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_GunBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29385,7 +29384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1121913384}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29420,7 +29419,7 @@ GameObject:
   - component: {fileID: 1158170258}
   - component: {fileID: 1158170260}
   - component: {fileID: 1158170259}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Base_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29500,7 +29499,7 @@ GameObject:
   - component: {fileID: 1163972232}
   - component: {fileID: 1163972231}
   - component: {fileID: 1163972230}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarMudGuardFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29602,7 +29601,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1168538407}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelsHubs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29638,7 +29637,7 @@ GameObject:
   - component: {fileID: 1173470341}
   - component: {fileID: 1173470343}
   - component: {fileID: 1173470342}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Barrel_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29716,7 +29715,7 @@ GameObject:
   - component: {fileID: 1188502043}
   - component: {fileID: 1188502045}
   - component: {fileID: 1188502044}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletShells_ParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34474,7 +34473,7 @@ GameObject:
   - component: {fileID: 1193214292}
   - component: {fileID: 1193214290}
   - component: {fileID: 1193214291}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArmedCar (3)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -34510,8 +34509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrain_manager_game_object: {fileID: 342108197}
-  friends: []
-  enemies: []
+  backing: 0
   nr: 2
 --- !u!114 &1193214292
 MonoBehaviour:
@@ -34664,7 +34662,7 @@ GameObject:
   - component: {fileID: 1200196615}
   - component: {fileID: 1200196617}
   - component: {fileID: 1200196616}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ParticleBurnoutSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39311,7 +39309,7 @@ GameObject:
   - component: {fileID: 1205706553}
   - component: {fileID: 1205706552}
   - component: {fileID: 1205706551}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarMudGuardFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39413,7 +39411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1215250340}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39448,7 +39446,7 @@ GameObject:
   - component: {fileID: 1222980604}
   - component: {fileID: 1222980606}
   - component: {fileID: 1222980605}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ParticleBurnoutSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44091,7 +44089,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1225600980}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44125,7 +44123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1252264062}
   - component: {fileID: 1252264063}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HeadlightLeftSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44218,7 +44216,7 @@ GameObject:
   - component: {fileID: 1272708984}
   - component: {fileID: 1272708983}
   - component: {fileID: 1272708982}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44316,7 +44314,7 @@ GameObject:
   - component: {fileID: 1290441375}
   - component: {fileID: 1290441377}
   - component: {fileID: 1290441376}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarSuspensionFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44392,7 +44390,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1296697593}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_GunBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44429,7 +44427,7 @@ GameObject:
   - component: {fileID: 1339262227}
   - component: {fileID: 1339262229}
   - component: {fileID: 1339262228}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Arm_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44507,7 +44505,7 @@ GameObject:
   - component: {fileID: 1376530340}
   - component: {fileID: 1376530339}
   - component: {fileID: 1376530338}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44580,7 +44578,7 @@ GameObject:
   - component: {fileID: 1403256282}
   - component: {fileID: 1403256284}
   - component: {fileID: 1403256283}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarHeadLightsGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44658,7 +44656,7 @@ GameObject:
   - component: {fileID: 1412020192}
   - component: {fileID: 1412020194}
   - component: {fileID: 1412020193}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Base_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44755,6 +44753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrain_manager_game_object: {fileID: 342108197}
+  numberOfPrios: 0
   nummberOfColors: 15
 --- !u!4 &1419021860
 Transform:
@@ -44781,7 +44780,7 @@ GameObject:
   - component: {fileID: 1423420241}
   - component: {fileID: 1423420243}
   - component: {fileID: 1423420242}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Base_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44859,7 +44858,7 @@ GameObject:
   - component: {fileID: 1426144532}
   - component: {fileID: 1426144534}
   - component: {fileID: 1426144533}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Arm_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44937,7 +44936,7 @@ GameObject:
   - component: {fileID: 1493766482}
   - component: {fileID: 1493766484}
   - component: {fileID: 1493766483}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Traser_ParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49689,7 +49688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1498612584}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WaypointTargetObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49798,7 +49797,7 @@ GameObject:
   - component: {fileID: 1504577934}
   - component: {fileID: 1504577936}
   - component: {fileID: 1504577935}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MuzzelFlash_ParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54551,7 +54550,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1566165710}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Helpers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54586,7 +54585,7 @@ GameObject:
   - component: {fileID: 1588384585}
   - component: {fileID: 1588384584}
   - component: {fileID: 1588384583}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ColliderBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54677,7 +54676,7 @@ GameObject:
   - component: {fileID: 1589858707}
   - component: {fileID: 1589858709}
   - component: {fileID: 1589858708}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54755,7 +54754,7 @@ GameObject:
   - component: {fileID: 1644810231}
   - component: {fileID: 1644810233}
   - component: {fileID: 1644810232}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: HealthBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54827,7 +54826,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1685671593}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54860,7 +54859,7 @@ GameObject:
   - component: {fileID: 1714036556}
   - component: {fileID: 1714036558}
   - component: {fileID: 1714036557}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_GunBody_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54938,7 +54937,7 @@ GameObject:
   - component: {fileID: 1718012252}
   - component: {fileID: 1718012254}
   - component: {fileID: 1718012253}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_BaseRotation_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55060,7 +55059,7 @@ GameObject:
   - component: {fileID: 1733222679}
   - component: {fileID: 1733222681}
   - component: {fileID: 1733222680}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_BaseRotation_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55138,7 +55137,7 @@ GameObject:
   - component: {fileID: 1765173147}
   - component: {fileID: 1765173149}
   - component: {fileID: 1765173148}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_BaseRotation_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55216,7 +55215,7 @@ GameObject:
   - component: {fileID: 1773777145}
   - component: {fileID: 1773777147}
   - component: {fileID: 1773777146}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Arm_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55294,7 +55293,7 @@ GameObject:
   - component: {fileID: 1782803949}
   - component: {fileID: 1782803951}
   - component: {fileID: 1782803950}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: HealthBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55368,7 +55367,7 @@ GameObject:
   - component: {fileID: 1798654411}
   - component: {fileID: 1798654413}
   - component: {fileID: 1798654412}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55444,7 +55443,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1835580347}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55479,7 +55478,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1860618265}
   - component: {fileID: 1860618266}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HeadlighRightSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55571,7 +55570,7 @@ GameObject:
   - component: {fileID: 1889806326}
   - component: {fileID: 1889806328}
   - component: {fileID: 1889806327}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Arm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55649,7 +55648,7 @@ GameObject:
   - component: {fileID: 1895679138}
   - component: {fileID: 1895679140}
   - component: {fileID: 1895679139}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarComponents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55728,7 +55727,7 @@ GameObject:
   - component: {fileID: 1929903942}
   - component: {fileID: 1929903944}
   - component: {fileID: 1929903943}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_GunBody_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55806,7 +55805,7 @@ GameObject:
   - component: {fileID: 1948981892}
   - component: {fileID: 1948981894}
   - component: {fileID: 1948981893}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Base_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55884,7 +55883,7 @@ GameObject:
   - component: {fileID: 1951241332}
   - component: {fileID: 1951241334}
   - component: {fileID: 1951241333}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Barrel_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55962,7 +55961,7 @@ GameObject:
   - component: {fileID: 1967960207}
   - component: {fileID: 1967960209}
   - component: {fileID: 1967960208}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Barrel_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56040,7 +56039,7 @@ GameObject:
   - component: {fileID: 1971840406}
   - component: {fileID: 1971840408}
   - component: {fileID: 1971840407}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Barrel_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56116,7 +56115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1973487538}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56152,7 +56151,7 @@ GameObject:
   - component: {fileID: 1974017543}
   - component: {fileID: 1974017545}
   - component: {fileID: 1974017544}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Barrel_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56295,7 +56294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2001899741}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56329,7 +56328,7 @@ GameObject:
   - component: {fileID: 2014064416}
   - component: {fileID: 2014064418}
   - component: {fileID: 2014064417}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarSuspensionFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56405,7 +56404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2016572270}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56438,7 +56437,7 @@ GameObject:
   - component: {fileID: 2069355271}
   - component: {fileID: 2069355273}
   - component: {fileID: 2069355272}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarComponents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56518,7 +56517,7 @@ GameObject:
   - component: {fileID: 2102178956}
   - component: {fileID: 2102178955}
   - component: {fileID: 2102178954}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatlingGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56625,7 +56624,7 @@ GameObject:
   - component: {fileID: 2141199451}
   - component: {fileID: 2141199449}
   - component: {fileID: 2141199450}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelHubRearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76648,7 +76647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3170318192927096101}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76664,7 +76663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3170045785356902625}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76682,7 +76681,7 @@ GameObject:
   - component: {fileID: 3162004913428094707}
   - component: {fileID: 3140832579779707371}
   - component: {fileID: 3150884254705336141}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_BaseRotation_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76700,7 +76699,7 @@ GameObject:
   - component: {fileID: 3170083222970664001}
   - component: {fileID: 3142242671475892771}
   - component: {fileID: 3151077022128249475}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Base_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76718,7 +76717,7 @@ GameObject:
   - component: {fileID: 3161858900501004371}
   - component: {fileID: 3141704480468974083}
   - component: {fileID: 3151444416664714511}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Barrel_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76736,7 +76735,7 @@ GameObject:
   - component: {fileID: 3161876723815998073}
   - component: {fileID: 3140699518931178469}
   - component: {fileID: 3151872410891785871}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Base_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76752,7 +76751,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3170325986103346473}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_GunBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76770,7 +76769,7 @@ GameObject:
   - component: {fileID: 3161927643599891253}
   - component: {fileID: 3140811440981865683}
   - component: {fileID: 3151485298366405767}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_GunBody_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76789,7 +76788,7 @@ GameObject:
   - component: {fileID: 3029872778574916373}
   - component: {fileID: 2969199422864236821}
   - component: {fileID: 3061089766738466085}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatlingGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76807,7 +76806,7 @@ GameObject:
   - component: {fileID: 3170288436410870251}
   - component: {fileID: 3141509035921314659}
   - component: {fileID: 3151752627203938545}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Barrel_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76823,7 +76822,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3161733338453792357}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_BaseRotation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76841,7 +76840,7 @@ GameObject:
   - component: {fileID: 3170293350991034423}
   - component: {fileID: 3142231003032939709}
   - component: {fileID: 3150868269854218927}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Arm_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76859,7 +76858,7 @@ GameObject:
   - component: {fileID: 3161622753964771623}
   - component: {fileID: 3141672984959919071}
   - component: {fileID: 3150959286326939955}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_GunBody_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76877,7 +76876,7 @@ GameObject:
   - component: {fileID: 3161939306659112795}
   - component: {fileID: 2967711551148324255}
   - component: {fileID: 2967068034054402271}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MuzzelFlash_ParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76895,7 +76894,7 @@ GameObject:
   - component: {fileID: 3161845706682060421}
   - component: {fileID: 2967311989925996245}
   - component: {fileID: 2966349680787431365}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletImpact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76913,7 +76912,7 @@ GameObject:
   - component: {fileID: 3161935013272607109}
   - component: {fileID: 3142250753568266211}
   - component: {fileID: 3151072816484665805}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_BaseRotation_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76931,7 +76930,7 @@ GameObject:
   - component: {fileID: 3161859058722446723}
   - component: {fileID: 3141371192507786183}
   - component: {fileID: 3151623842439765091}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_BaseRotation_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76949,7 +76948,7 @@ GameObject:
   - component: {fileID: 3170203857856987477}
   - component: {fileID: 3142302484465758135}
   - component: {fileID: 3150871552120925843}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Barrel_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76967,7 +76966,7 @@ GameObject:
   - component: {fileID: 3161671109922436191}
   - component: {fileID: 2967362024662406585}
   - component: {fileID: 2967224889261882397}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletShells_ParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76985,7 +76984,7 @@ GameObject:
   - component: {fileID: 3170137451110386641}
   - component: {fileID: 3141339360206265545}
   - component: {fileID: 3152493556056074023}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_GunBody_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77003,7 +77002,7 @@ GameObject:
   - component: {fileID: 3170372232346413163}
   - component: {fileID: 3141685291638428257}
   - component: {fileID: 3150942390875561477}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Arm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77021,7 +77020,7 @@ GameObject:
   - component: {fileID: 3170405009407531971}
   - component: {fileID: 2967536976078478557}
   - component: {fileID: 2966403652839512037}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Traser_ParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77039,7 +77038,7 @@ GameObject:
   - component: {fileID: 3161763096196381489}
   - component: {fileID: 3141340036008029009}
   - component: {fileID: 3151449750808982613}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Arm_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77057,7 +77056,7 @@ GameObject:
   - component: {fileID: 3162038528234811967}
   - component: {fileID: 3140841522074898449}
   - component: {fileID: 3150918662954155353}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Base_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77073,7 +77072,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3161598732058412995}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatelingGun_L3_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77106,7 +77105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3165470285739708492}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77198,7 +77197,7 @@ GameObject:
   - component: {fileID: 3165470285794771030}
   - component: {fileID: 3165470285794771031}
   - component: {fileID: 3165470285794771032}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ColliderBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77297,7 +77296,7 @@ GameObject:
   - component: {fileID: 3165470285815150272}
   - component: {fileID: 3165470285815150273}
   - component: {fileID: 3165470285815150274}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77389,7 +77388,7 @@ GameObject:
   - component: {fileID: 3165470285920689755}
   - component: {fileID: 3165470285920689756}
   - component: {fileID: 3165470285920689757}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ColliderFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77467,7 +77466,7 @@ GameObject:
   - component: {fileID: 3165470286086248102}
   - component: {fileID: 3165470286086248103}
   - component: {fileID: 3165470286086248104}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarWheelRearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77545,7 +77544,7 @@ GameObject:
   - component: {fileID: 3165470286106900358}
   - component: {fileID: 3165470286106900356}
   - component: {fileID: 3165470286106900357}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarWheelFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77718,7 +77717,7 @@ GameObject:
   - component: {fileID: 3165470286132873929}
   - component: {fileID: 3165470286132873931}
   - component: {fileID: 3165470286132873930}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelHubRearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77818,7 +77817,7 @@ GameObject:
   - component: {fileID: 3165470286205641662}
   - component: {fileID: 3165470286205641659}
   - component: {fileID: 3165470286205641540}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArmedCar (1)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -77838,8 +77837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrain_manager_game_object: {fileID: 342108197}
-  friends: []
-  enemies: []
+  backing: 0
   nr: 1
 --- !u!114 &3165470286205641659
 MonoBehaviour:
@@ -78004,7 +78002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3165470286211622307}
   - component: {fileID: 3165470286211622306}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HeadlightLeftSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78034,7 +78032,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3165470286217846535}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CameraFocusPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78125,7 +78123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3165470286247690579}
   - component: {fileID: 3165470286247690578}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HeadlighRightSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78203,7 +78201,7 @@ GameObject:
   - component: {fileID: 3165470286302147903}
   - component: {fileID: 3165470286302147901}
   - component: {fileID: 3165470286302147902}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarWheelFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78295,7 +78293,7 @@ GameObject:
   - component: {fileID: 3165470286372689540}
   - component: {fileID: 3165470286372689541}
   - component: {fileID: 3165470286372689542}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarBrakeLightsGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78373,7 +78371,7 @@ GameObject:
   - component: {fileID: 3165470286386872202}
   - component: {fileID: 3165470286386872200}
   - component: {fileID: 3165470286386872201}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarSuspensionFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78451,7 +78449,7 @@ GameObject:
   - component: {fileID: 3165470286423777843}
   - component: {fileID: 3165470286423777841}
   - component: {fileID: 3165470286423777842}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarSuspensionFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78481,7 +78479,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3165470286478898816}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WaypointTargetObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78587,7 +78585,7 @@ GameObject:
   - component: {fileID: 3165470286511286774}
   - component: {fileID: 3165470286511286775}
   - component: {fileID: 3165470286511286776}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarMudGuardFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78661,7 +78659,7 @@ GameObject:
   - component: {fileID: 3165470286527660606}
   - component: {fileID: 3165470286527660604}
   - component: {fileID: 3165470286527660605}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: HealthBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78740,7 +78738,7 @@ GameObject:
   - component: {fileID: 3165470286767455943}
   - component: {fileID: 3165470286767455941}
   - component: {fileID: 3165470286767455942}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarComponents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78813,7 +78811,7 @@ GameObject:
   - component: {fileID: 3165470286784535527}
   - component: {fileID: 3165470286784535525}
   - component: {fileID: 3165470286784535526}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78919,7 +78917,7 @@ GameObject:
   - component: {fileID: 3165470286938510930}
   - component: {fileID: 3165470286938510931}
   - component: {fileID: 3165470286938510932}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarMudGuardFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79092,7 +79090,7 @@ GameObject:
   - component: {fileID: 3165470286950209099}
   - component: {fileID: 3165470286950209101}
   - component: {fileID: 3165470286950209100}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelHubFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79134,7 +79132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3165470286993395963}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79212,7 +79210,7 @@ GameObject:
   - component: {fileID: 3165470287003689398}
   - component: {fileID: 3165470287003689396}
   - component: {fileID: 3165470287003689397}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79304,7 +79302,7 @@ GameObject:
   - component: {fileID: 3165470287060020810}
   - component: {fileID: 3165470287060020811}
   - component: {fileID: 3165470287060020812}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ColliderBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79335,7 +79333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3165470287067239113}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79508,7 +79506,7 @@ GameObject:
   - component: {fileID: 3165470287085205261}
   - component: {fileID: 3165470287085205263}
   - component: {fileID: 3165470287085205262}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelHubFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84153,7 +84151,7 @@ GameObject:
   - component: {fileID: 3165470287241103726}
   - component: {fileID: 3165470287241103724}
   - component: {fileID: 3165470287241103725}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ParticleBurnoutSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84185,7 +84183,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3165470287242447118}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84263,7 +84261,7 @@ GameObject:
   - component: {fileID: 3165470287269040798}
   - component: {fileID: 3165470287269040796}
   - component: {fileID: 3165470287269040797}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarHeadLightsGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84297,7 +84295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3165470287339672868}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelsHubs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84375,7 +84373,7 @@ GameObject:
   - component: {fileID: 3165470287353484702}
   - component: {fileID: 3165470287353484700}
   - component: {fileID: 3165470287353484701}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkyCarWheelRearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84407,7 +84405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3165470287354839684}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Helpers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84580,7 +84578,7 @@ GameObject:
   - component: {fileID: 3165470287424081861}
   - component: {fileID: 3165470287424081863}
   - component: {fileID: 3165470287424081864}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelHubRearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,8 +14,8 @@ namespace UnityStandardAssets.Vehicles.Car
         public GameObject terrain_manager_game_object;
         TerrainManager terrain_manager;
 
-        public GameObject[] friends;
-        public GameObject[] enemies;
+        GameObject[] friends;
+        GameObject[] enemies;
 
         Graph VisibilityGraph;
         List<Node> myPath = new List<Node>();
@@ -29,7 +29,7 @@ namespace UnityStandardAssets.Vehicles.Car
         int listDir = 1;
         int prioNodeIndex = -1;
         int tragetNodeId = 0;
-        bool backing = false;
+        public bool backing = false;
         List<int> currentPath;
 
         public int nr;
@@ -44,7 +44,7 @@ namespace UnityStandardAssets.Vehicles.Car
             int xLen = traversability.GetLength(0);int zLen = traversability.GetLength(1);
 
             VisibilityGraph visibilityGraphScript = GameObject.Find("VisibilityGraphObj").GetComponent<VisibilityGraph>();
-            //visibilityGraphScript.makeMap();
+            visibilityGraphScript.makeMap();
             VisibilityGraph = visibilityGraphScript.VisGraph;
             nodeIdMatrix=visibilityGraphScript.nodeIdMatrix;        
             mapGraph=visibilityGraphScript.mapGraph;
@@ -61,14 +61,14 @@ namespace UnityStandardAssets.Vehicles.Car
             // Plan your path here
             // ...
             List<Node> fullPathList=visibilityGraphScript.prioNodes;
-            print(fullPathList.Count);
+
 
             int nrCars = 3; 
-            int len = (int)Math.Floor(fullPathList.Count/3.0f);
-            print(len);
+            int len = (int)Math.Floor(visibilityGraphScript.numberOfPrios/3.0f);
+
             if(nr==nrCars-1){
-                for(int i = nr*len;i<fullPathList.Count;i++){ 
-                    print(fullPathList[i].getPosition());              
+                for(int i = nr*len;i<visibilityGraphScript.numberOfPrios;i++){ 
+                                
                     myPath.Add(fullPathList[i]);
                 }
             }
@@ -145,11 +145,11 @@ namespace UnityStandardAssets.Vehicles.Car
             LayerMask mask = LayerMask.GetMask("CubeWalls");
             //bool hitBack = body.SweepTest(steeringPoint,out rayHit, 2.0f);
             //bool hitContinue = body.SweepTest(steeringPoint,out rayHit, 8.0f);
-            bool hitBack  = Physics.SphereCast(transform.position,3.0f,steeringPoint,out rayHit,4.0f, mask);
-            bool hitForward  = Physics.SphereCast(transform.position,3.0f, -steeringPoint,out rayHit,2.5f,  mask);
+            bool hitBack  = Physics.SphereCast(transform.position,2.0f,steeringPoint,out rayHit,4.0f, mask);
+            bool hitForward  = Physics.SphereCast(transform.position,2.0f, -steeringPoint,out rayHit,2.5f,  mask);
             Debug.DrawRay(transform.position, steeringPoint*5.0f,Color.cyan,0.1f);
             Debug.DrawRay(transform.position, -steeringPoint*5.0f,Color.red,0.1f);
-            bool hitContinue = Physics.SphereCast(transform.position,3.0f,steeringPoint,out rayHit,12.0f, mask);
+            bool hitContinue = Physics.SphereCast(transform.position,2.0f,steeringPoint,out rayHit,12.0f, mask);
             if(hitBack){
                 backing=true;
                 newSpeed=-1f;
@@ -169,6 +169,7 @@ namespace UnityStandardAssets.Vehicles.Car
             }
             if(hitForward){
                 newSpeed=1;
+                print("forward");
             }
 
             Debug.DrawLine (transform.position, target);
@@ -193,77 +194,77 @@ namespace UnityStandardAssets.Vehicles.Car
         }
 
 
-    public List<int> aStar(int start, int Goal){
-        //var numbers2 = new List<int>() { 2, 3, 5, 7 };
-        List<int> openSet = new List<int>() {start};
-        Dictionary<int,int> cameFrom = new Dictionary<int,int>();
+        public List<int> aStar(int start, int Goal){
+            //var numbers2 = new List<int>() { 2, 3, 5, 7 };
+            List<int> openSet = new List<int>() {start};
+            Dictionary<int,int> cameFrom = new Dictionary<int,int>();
 
-        // For node n, gScore[n] is the cost of the cheapest path from start to n currently known.
-        float[] gScore = new float[mapGraph.getSize()];
-        float[] fScore = new float[mapGraph.getSize()];
+            // For node n, gScore[n] is the cost of the cheapest path from start to n currently known.
+            float[] gScore = new float[mapGraph.getSize()];
+            float[] fScore = new float[mapGraph.getSize()];
 
-        for ( int i = 0; i < mapGraph.getSize();i++ ) {
-            gScore[i] = 1000000.0f;
-            fScore[i] = 1000000.0f; 
-        }
-        gScore[start] = 0.0f;
-        fScore[start] = cost(start,Goal);
+            for ( int i = 0; i < mapGraph.getSize();i++ ) {
+                gScore[i] = 1000000.0f;
+                fScore[i] = 1000000.0f; 
+            }
+            gScore[start] = 0.0f;
+            fScore[start] = cost(start,Goal);
 
 
-        while (openSet.Count>0){//!openSet.Any()
-            int current=helpCurrent(fScore,openSet);
-            if (current == Goal){
-                return reconstruct_path(cameFrom, current);}
-            openSet.Remove(current);
-            foreach (int neighbor in mapGraph.getAdjList(current)){
-                // d(current,neighbor) is the weight of the edge from current to neighbor
-                // tentative_gScore is the distance from start to the neighbor through current
-                float tentative_gScore = gScore[current] + cost(current, neighbor);
-                if (tentative_gScore < gScore[neighbor]){
-                    // This path to neighbor is better than any previous one. Record it!
-                    cameFrom[neighbor] = current;
-                    gScore[neighbor] = tentative_gScore;
-                    fScore[neighbor] = gScore[neighbor] + cost(neighbor,Goal);
-                    if (openSet.Contains(neighbor)==false){
-                        openSet.Add(neighbor);
+            while (openSet.Count>0){//!openSet.Any()
+                int current=helpCurrent(fScore,openSet);
+                if (current == Goal){
+                    return reconstruct_path(cameFrom, current);}
+                openSet.Remove(current);
+                foreach (int neighbor in mapGraph.getAdjList(current)){
+                    // d(current,neighbor) is the weight of the edge from current to neighbor
+                    // tentative_gScore is the distance from start to the neighbor through current
+                    float tentative_gScore = gScore[current] + cost(current, neighbor);
+                    if (tentative_gScore < gScore[neighbor]){
+                        // This path to neighbor is better than any previous one. Record it!
+                        cameFrom[neighbor] = current;
+                        gScore[neighbor] = tentative_gScore;
+                        fScore[neighbor] = gScore[neighbor] + cost(neighbor,Goal);
+                        if (openSet.Contains(neighbor)==false){
+                            openSet.Add(neighbor);
+                        }
                     }
                 }
             }
+
+            return new List<int>();
+
         }
 
-        return new List<int>();
-
-    }
-
-    public int helpCurrent(float[] fScore,List<int> openSet){
-        float lowestCost=10000000000.0f;
-        int current=0;
-        foreach(int id in openSet){
-            if(fScore[id]<lowestCost){
-                lowestCost=fScore[id];
-                current=id;
+        public int helpCurrent(float[] fScore,List<int> openSet){
+            float lowestCost=10000000000.0f;
+            int current=0;
+            foreach(int id in openSet){
+                if(fScore[id]<lowestCost){
+                    lowestCost=fScore[id];
+                    current=id;
+                }
             }
+            return current;
         }
-        return current;
-    }
 
-    public float cost(int id,int goal){
-        return Vector3.Distance(mapGraph.getNode(id).getPosition(),mapGraph.getNode(goal).getPosition());
-    } 
+        public float cost(int id,int goal){
+            return Vector3.Distance(mapGraph.getNode(id).getPosition(),mapGraph.getNode(goal).getPosition());
+        } 
 
-    public List<int> reconstruct_path(Dictionary<int,int> cameFrom,int current){
-        foreach (KeyValuePair<int, int> kvp in cameFrom)
-        {
-            //textBox3.Text += ("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
-            //Debug.Log("Key = "+kvp.Key.ToString()+", Value = "+ kvp.Value.ToString());
+        public List<int> reconstruct_path(Dictionary<int,int> cameFrom,int current){
+            foreach (KeyValuePair<int, int> kvp in cameFrom)
+            {
+                //textBox3.Text += ("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+                //Debug.Log("Key = "+kvp.Key.ToString()+", Value = "+ kvp.Value.ToString());
+            }
+            List<int> total_path = new List<int>() {current};
+            while(cameFrom.ContainsKey(current)){
+                current = cameFrom[current];
+                total_path.Insert(0,current);
+            }
+            return total_path;
         }
-        List<int> total_path = new List<int>() {current};
-        while(cameFrom.ContainsKey(current)){
-            current = cameFrom[current];
-            total_path.Insert(0,current);
-        }
-        return total_path;
-    }
         
 
 

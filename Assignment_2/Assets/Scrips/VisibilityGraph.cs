@@ -13,6 +13,8 @@ public class VisibilityGraph : MonoBehaviour {
     public Graph mapGraph;
     public List<Node> prioNodes = new List<Node>();
     List<Node> receivingPrioNodes = new List<Node>();
+    public int numberOfPrios = 0;
+ 
     private Color[] colors = {Color.white,Color.blue,Color.red,Color.green,Color.cyan,Color.yellow,Color.black,Color.magenta,Color.grey,
     new Color(0.3f, 0.4f, 0.6f, 1.0f), new Color(1.00f,0.49f,0.00f, 1.0f), new Color(0.00f,1.00f,0.84f, 1.0f), new Color(1.00f,0.50f,0.84f, 1.0f),
     new Color(0.40f,0.27f,0.00f, 1.0f), new Color(0.66f, 0.0f, 0.0f, 1.0f),new Color(0.00f,0.49f,0.20f, 1.0f)};
@@ -144,6 +146,7 @@ public class VisibilityGraph : MonoBehaviour {
                 receivingPrioNodes.Add(nodeItem.Value);
             }
         }
+        numberOfPrios=receivingPrioNodes.Count;
         int colorid=0;
         Node fromNode = receivingPrioNodes[0];
         prioNodes.Add(fromNode);
@@ -168,7 +171,7 @@ public class VisibilityGraph : MonoBehaviour {
             
             receivingPrioNodes.Remove(receivingNode);
             prioNodes.Add(receivingNode);
-            print(receivingNode.getPosition());
+
             
             /*int temp=minPath[0];
             VisGraph.getNode(fromNode.getId()).setColor(colorid);

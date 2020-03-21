@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17811,7 +17811,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468917171}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b95a08bb76b04a79910669d0eebe447, type: 3}
   m_Name: 
@@ -17819,6 +17819,9 @@ MonoBehaviour:
   terrain_manager_game_object: {fileID: 1677047333}
   friends: []
   enemies: []
+  Nr: 0
+  speedParam: 1
+  lengthToGoal: 1
 --- !u!114 &468917176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17875,7 +17878,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468917171}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96468c245ae8e0d4f8f1c7a7b8b0542e, type: 3}
   m_Name: 
@@ -18184,6 +18187,9 @@ MonoBehaviour:
   terrain_manager_game_object: {fileID: 1677047333}
   friends: []
   enemies: []
+  Nr: 2
+  speedParam: 1
+  lengthToGoal: 1
 --- !u!114 &492361547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29834,6 +29840,9 @@ MonoBehaviour:
   terrain_manager_game_object: {fileID: 1677047333}
   friends: []
   enemies: []
+  Nr: 1
+  speedParam: 1
+  lengthToGoal: 1
 --- !u!114 &792701571
 MonoBehaviour:
   m_ObjectHideFlags: 0
