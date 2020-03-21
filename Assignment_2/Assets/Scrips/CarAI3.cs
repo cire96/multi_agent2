@@ -34,7 +34,7 @@ namespace UnityStandardAssets.Vehicles.Car
             float[, ] traversability = terrainInfo.traversability;
             int xLen = traversability.GetLength(0);int zLen = traversability.GetLength(1);
             TerrainGraph TerrainGraphScript = GameObject.Find("AwakeObj").GetComponent<TerrainGraph>();
-         
+             
             TerrainGraphScript.makeMap();
             
             mapGraph = TerrainGraphScript.mapGraph;

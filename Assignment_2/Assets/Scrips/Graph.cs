@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class Graph {
-    Dictionary<int, Node> nodes;
-    Dictionary<int, List<int>> adjList;
+    public Dictionary<int, Node> nodes;
+    public Dictionary<int, List<int>> adjList;
 
     int size;
 

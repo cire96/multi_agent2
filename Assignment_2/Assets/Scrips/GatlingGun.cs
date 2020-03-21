@@ -96,7 +96,9 @@ public class GatlingGun : MonoBehaviour
                         line_color = Color.blue;
                     }
 
-                    Debug.DrawLine(transform.position, hit.point, line_color);
+                    //Debug.DrawLine(transform.position, hit.point, line_color);
+
+
                     //Debug.DrawLine(transform.position, g_obj.transform.position, Color.yellow);
                     //Debug.Log("Did Hit" + hit.transform.root.gameObject + "aimed for" + g_obj);
 
