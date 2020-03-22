@@ -30,6 +30,8 @@ namespace UnityStandardAssets.Vehicles.Car {
         private bool gotTarget;
         private Node target;
 
+        public int nr;
+
         private void Start () {
             if (SQUARE_SIZE % 2 != 1) {
                 print ("SQUARE_SIZE must be an odd number!");
@@ -255,7 +257,20 @@ namespace UnityStandardAssets.Vehicles.Car {
 
             Debug.DrawLine (getAvgPos (), target.getSquare ().getPosition ());
 
-            Vector3 carToTarget = m_Car.transform.InverseTransformPoint (target.getSquare ().getPosition ());
+
+            Vector3 off=new Vector3(0,0,0);
+            if(nr==0){
+                off = (new Vector3(4f,0,4));
+            }else if(nr==2){
+                off = (new Vector3(-4f,0,-4));
+            }else if(nr==1){
+                off = (new Vector3(0,0,0));
+            }
+            Vector3 pos = target.getSquare().getPosition()+off;
+
+
+
+            Vector3 carToTarget = m_Car.transform.InverseTransformPoint (pos);
             float newSteer = (carToTarget.x / carToTarget.magnitude);
             float newSpeed = 1f; //(carToTarget.z / carToTarget.magnitude);
 
@@ -276,11 +291,9 @@ namespace UnityStandardAssets.Vehicles.Car {
             LayerMask mask = LayerMask.GetMask ("CubeWalls");
             //bool hitBack = body.SweepTest(steeringPoint,out rayHit, 2.0f);
             //bool hitContinue = body.SweepTest(steeringPoint,out rayHit, 8.0f);
-            bool hitBack = Physics.SphereCast (transform.position, 3.0f, steeringPoint, out rayHit, 3.0f, mask);
-            bool hitForward = Physics.SphereCast (transform.position, 3.0f, -steeringPoint, out rayHit, 2.5f, mask);
-            Debug.DrawRay (transform.position, steeringPoint * 5.0f, Color.cyan, 0.1f);
-            Debug.DrawRay (transform.position, -steeringPoint * 5.0f, Color.red, 0.1f);
-            bool hitContinue = Physics.SphereCast (transform.position, 3.0f, steeringPoint, out rayHit, 12.0f, mask);
+            bool hitBack = Physics.SphereCast (transform.position, 2.0f, steeringPoint, out rayHit, 3.0f, mask);
+            bool hitForward = Physics.SphereCast (transform.position, 2.0f, -steeringPoint, out rayHit, 2.5f, mask);
+            bool hitContinue = Physics.SphereCast (transform.position, 2.0f, steeringPoint, out rayHit, 12.0f, mask);
             if (hitBack) {
                 backing = true;
                 newSpeed = -1f;
@@ -302,7 +315,13 @@ namespace UnityStandardAssets.Vehicles.Car {
                 newSpeed = 1;
             }
 
-            Debug.DrawLine (transform.position, target.getSquare ().getPosition ());
+            float breakDis = 2.5f*m_Car.CurrentSpeed;
+            if(breakDis>Vector3.Distance(transform.position,pos)){
+                newSpeed=-1/(breakDis-Vector3.Distance(transform.position,pos)*m_Car.CurrentSpeed);
+            }
+
+
+            Debug.DrawLine (transform.position, pos);
 
             m_Car.Move (newSteer, newSpeed, newSpeed, 0f);
         }
