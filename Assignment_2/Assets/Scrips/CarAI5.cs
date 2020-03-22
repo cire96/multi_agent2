@@ -31,6 +31,11 @@ namespace UnityStandardAssets.Vehicles.Car {
         private Node target;
 
         public int nr;
+        private Graph mapGraph;
+        private int[,] nodeIdMatrix;
+        private int start;
+        private List<int> path = new List<int>();
+        int pathIndex=0;
 
         private void Start () {
             if (SQUARE_SIZE % 2 != 1) {
@@ -125,6 +130,94 @@ namespace UnityStandardAssets.Vehicles.Car {
             //         }
             //     }
             // }
+
+            TerrainGraph TerrainGraphScript = GameObject.Find("TerrainGraphObj").GetComponent<TerrainGraph>();
+         
+            TerrainGraphScript.makeMap();
+            
+            mapGraph = TerrainGraphScript.mapGraph;
+            nodeIdMatrix = TerrainGraphScript.nodeIdMatrix;
+
+            start = getTilePos(transform.position);
+        }
+
+        int getTilePos(Vector3 pos){
+            return nodeIdMatrix[terrainInfo.get_i_index(pos.x),terrainInfo.get_j_index(pos.z)];
+        }
+
+
+        public List<int> aStar(int start, int Goal){
+            //var numbers2 = new List<int>() { 2, 3, 5, 7 };
+            List<int> openSet = new List<int>() {start};
+            Dictionary<int,int> cameFrom = new Dictionary<int,int>();
+
+            // For node n, gScore[n] is the cost of the cheapest path from start to n currently known.
+            float[] gScore = new float[mapGraph.getSize()];
+            float[] fScore = new float[mapGraph.getSize()];
+
+            for ( int i = 0; i < mapGraph.getSize();i++ ) {
+                gScore[i] = 1000000.0f;
+                fScore[i] = 1000000.0f; 
+            }
+            gScore[start] = 0.0f;
+            fScore[start] = cost(start,Goal);
+
+
+            while (openSet.Count>0){//!openSet.Any()
+                int current=helpCurrent(fScore,openSet);
+                if (current == Goal){
+                    return reconstruct_path(cameFrom, current);}
+                openSet.Remove(current);
+                foreach (int neighbor in mapGraph.getAdjList(current)){
+                    // d(current,neighbor) is the weight of the edge from current to neighbor
+                    // tentative_gScore is the distance from start to the neighbor through current
+                    float tentative_gScore = gScore[current] + cost(current, neighbor);
+                    if (tentative_gScore < gScore[neighbor]){
+                        // This path to neighbor is better than any previous one. Record it!
+                        cameFrom[neighbor] = current;
+                        gScore[neighbor] = tentative_gScore;
+                        fScore[neighbor] = gScore[neighbor] + cost(neighbor,Goal);
+                        if (openSet.Contains(neighbor)==false){
+                            openSet.Add(neighbor);
+                        }
+                    }
+                }
+            }
+
+            return new List<int>();
+
+
+
+        }
+
+        public int helpCurrent(float[] fScore,List<int> openSet){
+            float lowestCost=10000000000.0f;
+            int current=0;
+            foreach(int id in openSet){
+                if(fScore[id]<lowestCost){
+                    lowestCost=fScore[id];
+                    current=id;
+                }
+            }
+            return current;
+        }
+
+        public float cost(int id,int goal){
+            return Vector3.Distance(mapGraph.getNode(id).getPosition(),mapGraph.getNode(goal).getPosition());
+        } 
+
+        public List<int> reconstruct_path(Dictionary<int,int> cameFrom,int current){
+            foreach (KeyValuePair<int, int> kvp in cameFrom)
+            {
+                //textBox3.Text += ("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+                //Debug.Log("Key = "+kvp.Key.ToString()+", Value = "+ kvp.Value.ToString());
+            }
+            List<int> total_path = new List<int>() {current};
+            while(cameFrom.ContainsKey(current)){
+                current = cameFrom[current];
+                total_path.Insert(0,current);
+            }
+            return total_path;
         }
 
         // creates a 2d array with integers which tell how many turrets have vision to which cells on the map
@@ -245,6 +338,11 @@ namespace UnityStandardAssets.Vehicles.Car {
                 target = getTarget ();
                 if (target != null) {
                     gotTarget = true;
+                    int end = getTilePos(target.getSquare().getPosition());
+                    path = aStar(start,end);
+                    start = end;
+                    pathIndex=0;
+
                 } else {
                     return;
                 }
@@ -257,6 +355,8 @@ namespace UnityStandardAssets.Vehicles.Car {
 
             Debug.DrawLine (getAvgPos (), target.getSquare ().getPosition ());
 
+            
+
 
             Vector3 off=new Vector3(0,0,0);
             if(nr==0){
@@ -266,7 +366,16 @@ namespace UnityStandardAssets.Vehicles.Car {
             }else if(nr==1){
                 off = (new Vector3(0,0,0));
             }
-            Vector3 pos = target.getSquare().getPosition()+off;
+            for(int i=pathIndex;i<path.Count;i++){
+                if(10.0f>Vector3.Distance(transform.position,mapGraph.getNode(path[pathIndex]).getPosition()+off) && pathIndex<path.Count){
+                    pathIndex=i+1;
+                    break;
+                }
+            }
+            if(10.0f>Vector3.Distance(transform.position,mapGraph.getNode(path[pathIndex]).getPosition()+off) && pathIndex<path.Count){
+                pathIndex++;
+            }
+            Vector3 pos = mapGraph.getNode(path[pathIndex]).getPosition()+off;//target.getSquare().getPosition()+off;
 
 
 
@@ -308,14 +417,18 @@ namespace UnityStandardAssets.Vehicles.Car {
                 newSpeed = -1f;
                 newSteer = -newSteer;
                 print ("continue");
-            } else {
+            }else if (hitContinue && backing == false) {
+                newSteer = 3*newSteer;
+            }else {
                 backing = false;
             }
+            
+
             if (hitForward) {
                 newSpeed = 1;
             }
 
-            float breakDis = 2.5f*m_Car.CurrentSpeed;
+            float breakDis = 2.0f*m_Car.CurrentSpeed;
             if(breakDis>Vector3.Distance(transform.position,pos)){
                 newSpeed=-1/(breakDis-Vector3.Distance(transform.position,pos)*m_Car.CurrentSpeed);
             }
