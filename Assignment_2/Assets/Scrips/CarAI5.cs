@@ -259,7 +259,7 @@ namespace UnityStandardAssets.Vehicles.Car {
             // if a square with vision from at least half of the cells is found, take it
             foreach (Node leaf in leafs) {
                 float cost = leaf.getCost ();
-                if (cost > (SQUARE_SIZE * SQUARE_SIZE) / 2 && cost < bestCost) {
+                if (cost > (SQUARE_SIZE * SQUARE_SIZE) / 1.4 && cost < bestCost) {
                     // if (cost < bestCost) {
                     bestCost = cost;
                     bestTarget = leaf;
@@ -317,23 +317,23 @@ namespace UnityStandardAssets.Vehicles.Car {
             //     }
             // }
 
-            Vector3 avg = getAvgPos ();
-            bool fullSpeed = true;
-            bool breakHard = false;
-
-            // when a car is destroyed
-            if (m_Car.transform == null) {
+            if (m_Car == null || m_Car.transform == null) {
                 return;
             }
+
+            Vector3 avg = getAvgPos ();
+            // bool fullSpeed = true;
+            bool fullSpeed = false;
+            bool breakHard = false;
 
             // if a turret is destroyed, initialize the vision map again and reset the visited list -> "start from new"
             if (checkChange ()) {
                 initVision ();
                 lastPoint = avg;
                 gotTarget = false;
-                visited = null;
-                visited = new List<Vector3> ();
-                visited.Add (getSquare (lastPoint.x, lastPoint.z).getPosition ());
+                // visited = null;
+                // visited = new List<Vector3> ();
+                // visited.Add (getSquare (lastPoint.x, lastPoint.z).getPosition ());
             }
 
             if (!gotTarget) {
@@ -356,7 +356,7 @@ namespace UnityStandardAssets.Vehicles.Car {
                     //     }
                     // }
                     // start = nodeIdMatrix[terrainInfo.get_i_index (transform.position.x), terrainInfo.get_j_index (transform.position.z)];
-                    start = nodeIdMatrix[terrainInfo.get_i_index (getAvgPos ().x), terrainInfo.get_j_index (getAvgPos ().z)];
+                    start = nodeIdMatrix[terrainInfo.get_i_index (avg.x), terrainInfo.get_j_index (avg.z)];
                     path = aStar (start, end);
                     pathIndex = 0;
 
@@ -364,41 +364,51 @@ namespace UnityStandardAssets.Vehicles.Car {
                     return;
                 }
             } else {
-                float distance = Vector3.Distance (avg, target.getSquare ().getPosition ());
-                if (distance < 8) {
-                    gotTarget = false;
-                    return;
-                } else if (distance < 20) {
-                    foreach (GameObject g in friends) {
-                        if (g != null && g.transform != null) {
-                            if (g.GetComponent<CarAI5> ().nr != nr) {
-                                if (Vector3.Distance (g.transform.position, avg) > 8) {
-                                    breakHard = true;
-                                    fullSpeed = false;
-                                }
-                            } else {
-                                if (Vector3.Distance (g.transform.position, avg) > 8) {
-                                    fullSpeed = false;
-                                }
-                            }
-
-                        }
+                float distance = Vector3.Distance (transform.position, target.getSquare ().getPosition ());
+                if (distance < 10) {
+                    // start timer and only change target when they've been there for time t
+                    if (counter == 500000) {
+                        gotTarget = false;
+                        counter = 0;
+                        return;
                     }
+                    counter++;
+                    return;
                 }
+                //  else if (distance < 20) {
+                //     foreach (GameObject g in friends) {
+                //         if (g != null && g.transform != null) {
+                //             if (g.GetComponent<CarAI5> ().nr != nr) {
+                //                 if (Vector3.Distance (g.transform.position, avg) > 8) {
+                //                     breakHard = true;
+                //                     fullSpeed = false;
+                //                 }
+                //             } else {
+                //                 if (Vector3.Distance (g.transform.position, avg) > 8) {
+                //                     fullSpeed = false;
+                //                 }
+                //             }
+
+                //         }
+                //     }
+                // }
             }
 
             Debug.DrawLine (avg, target.getSquare ().getPosition ());
 
+            float offsetValue = 2.2f;
             Vector3 off = new Vector3 (0, 0, 0);
             if (nr == 0) {
-                off = (new Vector3 (2f, 0, 2));
+                off = (new Vector3 (offsetValue, 0, offsetValue));
             } else if (nr == 2) {
-                off = (new Vector3 (-2f, 0, -2));
+                off = (new Vector3 (-offsetValue, 0, -offsetValue));
             }
+
+            float threshold = 16;
 
             for (int i = pathIndex; i < path.Count; i++) {
                 if (pathIndex < path.Count - 1) {
-                    if (12.0f > Vector3.Distance (transform.position, mapGraph.getNode (path[pathIndex]).getPosition () + off) && pathIndex < path.Count) {
+                    if (threshold > Vector3.Distance (transform.position, mapGraph.getNode (path[pathIndex]).getPosition () + off) && pathIndex < path.Count) {
                         pathIndex = i + 1;
                         break;
                     }
@@ -406,19 +416,23 @@ namespace UnityStandardAssets.Vehicles.Car {
             }
 
             if (pathIndex < path.Count - 1) {
-                if (12.0f > Vector3.Distance (transform.position, mapGraph.getNode (path[pathIndex]).getPosition () + off) && pathIndex < path.Count) {
+                if (threshold > Vector3.Distance (transform.position, mapGraph.getNode (path[pathIndex]).getPosition () + off) && pathIndex < path.Count) {
                     pathIndex++;
                 }
             }
-
-            Vector3 pos = mapGraph.getNode (path[pathIndex]).getPosition () + off; //target.getSquare().getPosition()+off;
+            Vector3 pos;
+            if (pathIndex > path.Count - 2) {
+                pos = target.getSquare ().getPosition () + off;
+            } else {
+                pos = mapGraph.getNode (path[pathIndex]).getPosition () + off;
+            }
             // Vector3 pos = target.getSquare().getPosition() + off;
             int count = 0;
             bool isOff = false;
             foreach (GameObject g in friends) {
-                if (g != null && g.transform != null) {
+                if (g != null && g.transform != null && g.GetComponent<CarAI5> () != null) {
                     count++;
-                    if (Vector3.Distance (g.GetComponent<CarAI5> ().transform.position, avg) > 8) {
+                    if (Vector3.Distance (g.GetComponent<CarAI5> ().transform.position, avg) > 12) {
                         isOff = true;
                     }
                 }
@@ -447,6 +461,7 @@ namespace UnityStandardAssets.Vehicles.Car {
             Vector3 steeringPoint = (transform.rotation * new Vector3 (0, 0, 1));
             RaycastHit rayHit;
             LayerMask mask = LayerMask.GetMask ("CubeWalls");
+            // LayerMask mask = LayerMask.GetMask ("Everything");
             //bool hitBack = body.SweepTest(steeringPoint,out rayHit, 2.0f);
             //bool hitContinue = body.SweepTest(steeringPoint,out rayHit, 8.0f);
             bool hitBack = Physics.SphereCast (transform.position, 2.0f, steeringPoint, out rayHit, 3.0f, mask);
@@ -479,7 +494,12 @@ namespace UnityStandardAssets.Vehicles.Car {
             float handbreak = 0f;
 
             if (!fullSpeed && !breakHard) {
-                float breakDis = 1f * m_Car.CurrentSpeed;
+                float breakDis;
+                if (Vector3.Distance (avg, transform.position) > 20) {
+                    breakDis = 0.7f * m_Car.CurrentSpeed;
+                } else {
+                    breakDis = 0.7f * m_Car.CurrentSpeed;
+                }
                 if (breakDis > Vector3.Distance (transform.position, pos)) {
                     newSpeed = -1 / (breakDis - Vector3.Distance (transform.position, pos) * m_Car.CurrentSpeed);
                 }
